@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {Route} from 'react-router'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {notification} from 'antd'
+import {message} from 'antd'
 import PageLoading from '../Loading/PageLoading'
+import {fetchRouteAuth} from '../../api/index'
 
 const mapStateToProps = state => ({
 	isLogin: state.userData.isLogin
@@ -20,14 +21,27 @@ class PrivateRoute extends Component {
 		}
 	}
 	
+	componentDidMount = async () => {
+		await this.checkAuth()
+	}
+	
+	componentWillReceiveProps = async (nextProps) => {
+		if (nextProps.location.pathname !== this.props.location.pathname) {
+			await this.checkAuth()
+		}
+	}
+	
 	checkAuth = async () => {
+		const pathname = this.props.location.pathname
 		let isAuthenticated = false
 		const {isLogin} = this.props
 		if (isLogin) {
 			this.setState({isLoading: true})
+			isAuthenticated = (await fetchRouteAuth({route: pathname}))['isAuth']
 		}
 		if (!isAuthenticated) {
-		
+			console.log('error auth')
+			message.error('無權使用，請先登入系統！', 5)
 		}
 		// 更新视图
 		this.setState({isAuthenticated: isAuthenticated, isLoading: false})
@@ -37,7 +51,7 @@ class PrivateRoute extends Component {
 		const {component: Component, ...rest} = this.props
 		const {isLoading, isAuthenticated} = this.state
 		return (
-			isLoading === true
+			isLoading
 				? <PageLoading/>
 				: <Route {...rest} render={props => (
 					isAuthenticated

@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
-import {Layout, Menu, Icon} from 'antd'
+import {Layout, Icon} from 'antd'
+import BaseMenu from '../components/SiderMenu/BaseMenu'
+import styles from './index.module.less'
+import ContentRoute from './ContentRoute'
 
 const {Header, Sider, Content, Footer} = Layout
 
@@ -14,32 +17,20 @@ class BasicLayout extends Component {
 	}
 	
 	render() {
+		console.log(this.props)
 		return (
 			<Layout>
 				<Sider
 					breakpoint="lg"
 					collapsed={true}
-					collapsedWidth="0"
+					// collapsedWidth="30"
 					trigger={null}
 					collapsible
 					width={256}
 					collapsed={this.state.collapsed}
 				>
-					<div className="logo"/>
-					<Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-						<Menu.Item key="1">
-							<Icon type="user"/>
-							<span>nav 1</span>
-						</Menu.Item>
-						<Menu.Item key="2">
-							<Icon type="video-camera"/>
-							<span>nav 2</span>
-						</Menu.Item>
-						<Menu.Item key="3">
-							<Icon type="upload"/>
-							<span>nav 3</span>
-						</Menu.Item>
-					</Menu>
+					<div className={styles.logo}/>
+					<BaseMenu menusData={this.props.menusData}/>
 				</Sider>
 				<Layout>
 					<Header style={{background: '#fff', padding: 0}}>
@@ -50,7 +41,7 @@ class BasicLayout extends Component {
 						/>
 					</Header>
 					<Content style={{margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280}}>
-						Content
+						<ContentRoute/>
 					</Content>
 				</Layout>
 			</Layout>

@@ -23,7 +23,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
 	config => {
 		// 在此添加发起请求前的信息
-		config.headers.Authorization = store.getState().userData.accessToken
+		config.headers.Authorization = 'Bearer ' + store.getState().userData.accessToken
 		return config
 	},
 	error => {

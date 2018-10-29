@@ -23,7 +23,8 @@ class Login extends Component {
 			if (!err) {
 				console.log('Received values of form: ', values);
 				fetchLogin(values).then(data => {
-					this.props.setUser({accessToken: data})
+					this.props.setUser({accessToken: data, isLogin: true})
+					this.props.history.push('/admin/index')
 				})
 			}
 		});

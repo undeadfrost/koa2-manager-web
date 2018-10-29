@@ -9,7 +9,7 @@ class App extends Component {
 		return (
 			<Switch>
 				<Route path='/admin/login' component={Login}/>
-				<PrivateRoute path='/admin/index' component={List}/>
+				<PrivateRoute path='/admin' excat component={List}/>
 			</Switch>
 		)
 	}
