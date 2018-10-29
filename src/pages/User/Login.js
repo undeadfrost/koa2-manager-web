@@ -9,11 +9,7 @@ import styles from './index.module.less'
 
 const FormItem = Form.Item;
 
-const mapStateToProps = state => {
-	return {
-		userData: state.userData
-	}
-}
+const mapStateToProps = state => ({})
 
 // 获取redux中actions
 const mapDispatchToProps = dispatch => bindActionCreators({

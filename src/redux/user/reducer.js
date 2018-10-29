@@ -1,7 +1,9 @@
 import {UPDATE_USER} from './actions'
 
 const initState = {
-	accessToken: ''
+	accessToken: '',
+	isLogin: false,
+	info: {}
 }
 
 export default (state = initState, action) => {
