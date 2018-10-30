@@ -3,7 +3,7 @@ import {Form, Button, Row, Col} from 'antd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {fetchLogin} from '../../api/index'
-import {setUser} from '../../redux/user/actions'
+import {updateUser} from '../../redux/user/actions'
 import LoginItem from "../../components/Login/LoginItem";
 import styles from './index.module.less'
 
@@ -13,7 +13,7 @@ const mapStateToProps = state => ({})
 
 // 获取redux中actions
 const mapDispatchToProps = dispatch => bindActionCreators({
-	setUser
+	updateUser
 }, dispatch)
 
 class Login extends Component {
@@ -23,8 +23,8 @@ class Login extends Component {
 			if (!err) {
 				console.log('Received values of form: ', values);
 				fetchLogin(values).then(data => {
-					this.props.setUser({accessToken: data, isLogin: true})
-					this.props.history.push('/admin/index')
+					this.props.updateUser({accessToken: data, isLogin: true})
+					this.props.history.push('/admin/user')
 				})
 			}
 		});

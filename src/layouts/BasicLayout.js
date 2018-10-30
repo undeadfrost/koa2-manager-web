@@ -4,7 +4,7 @@ import BaseMenu from '../components/SiderMenu/BaseMenu'
 import styles from './index.module.less'
 import ContentRoute from './ContentRoute'
 
-const {Header, Sider, Content, Footer} = Layout
+const {Header, Sider, Content} = Layout
 
 class BasicLayout extends Component {
 	state = {

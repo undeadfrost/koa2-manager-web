@@ -2,7 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 import config from '../config'
 import store from '../redux/index'
-import {setUser} from '../redux/user/actions'
+import {updateUser} from '../redux/user/actions'
 
 // 自定义Axios实例
 const instance = axios.create({
@@ -40,7 +40,7 @@ instance.interceptors.response.use(
 		const authorization = response.headers.Authorization
 		const data = response.data
 		if (authorization) {
-			store.dispatch(setUser(authorization))
+			store.dispatch(updateUser(authorization))
 		}
 		if (data.code === 1) {
 			console.log('success')

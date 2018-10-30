@@ -40,7 +40,6 @@ class BaseMenu extends Component {
 	}
 	
 	render() {
-		console.log(this.props)
 		const menusData = this.props.menusData
 		return (
 			<Menu theme="dark" mode="inline">
