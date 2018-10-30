@@ -1,46 +1,42 @@
 import React, {Component} from 'react'
 import {Layout, Icon} from 'antd'
-import BaseMenu from '../components/SiderMenu/BaseMenu'
+import BaseMenu from '../components/Menu/BaseMenu'
 import styles from './index.module.less'
 import ContentRoute from './ContentRoute'
+import HeaderView from "./HeaderView";
 
 const {Header, Sider, Content} = Layout
 
 class BasicLayout extends Component {
-	state = {
-		collapsed: false,
-	};
+	constructor(props) {
+		super(props)
+		this.state = {
+			breakpoint: 'md',
+			collapsed: false,
+		}
+	}
+	
 	toggle = () => {
 		this.setState({
 			collapsed: !this.state.collapsed,
-		});
+		})
 	}
 	
 	render() {
-		console.log(this.props)
 		return (
-			<Layout>
+			<Layout className={styles.layout}>
 				<Sider
-					breakpoint="lg"
-					collapsed={true}
-					// collapsedWidth="30"
+					breakpoint={this.state.breakpoint}
 					trigger={null}
 					collapsible
-					width={256}
 					collapsed={this.state.collapsed}
 				>
 					<div className={styles.logo}/>
 					<BaseMenu menusData={this.props.menusData}/>
 				</Sider>
 				<Layout>
-					<Header style={{background: '#fff', padding: 0}}>
-						<Icon
-							className="trigger"
-							type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-							onClick={this.toggle}
-						/>
-					</Header>
-					<Content style={{margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280}}>
+					<HeaderView collapsed={this.state.collapsed} toggle={this.toggle}/>
+					<Content className={styles.content}>
 						<ContentRoute/>
 					</Content>
 				</Layout>

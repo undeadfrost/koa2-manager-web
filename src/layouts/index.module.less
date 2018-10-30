@@ -1,5 +1,31 @@
-.logo {
-  height: 32px;
-  background: rgba(255, 255, 255, .2);
-  margin: 16px;
+.layout {
+  .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, .2);
+    margin: 16px;
+  }
+  .header {
+    background: #ffffff;
+    padding: 0;
+    .icon {
+      font-size: 18px;
+      line-height: 64px;
+      padding: 0 24px;
+      cursor: pointer;
+      transition: color .3s;
+    }
+    .icon:hover {
+      color: #1890ff;
+    }
+    .dropdown {
+      float: right;
+      padding-right: 24px;
+    }
+  }
+  .content {
+    margin: 24px 16px;
+    padding: 24px;
+    background: #ffffff;
+    min-height: 280px;
+  }
 }

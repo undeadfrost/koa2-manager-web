@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Route} from 'react-router'
-import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {message} from 'antd'
 import PageLoading from '../Loading/PageLoading'
