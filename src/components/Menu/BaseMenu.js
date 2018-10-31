@@ -25,11 +25,13 @@ class BaseMenu extends Component {
 				break
 			}
 			const submenus = menusData[i].submenus
-			for (let j = 0; j < submenus.length; j++) {
-				if (submenus[j].route === pathname) {
-					defaultOpenKeys.push(menusData[i].id.toString())
-					defaultSelectedKeys.push(submenus[j].id.toString())
-					break
+			if (submenus) {
+				for (let j = 0; j < submenus.length; j++) {
+					if (submenus[j].route === pathname) {
+						defaultOpenKeys.push(menusData[i].id.toString())
+						defaultSelectedKeys.push(submenus[j].id.toString())
+						break
+					}
 				}
 			}
 		}
@@ -50,18 +52,9 @@ class BaseMenu extends Component {
 	}
 	
 	getSubMenuOrItem = (item) => {
-		if (item.submenus.length === 0) {
+		if (item.submenus) {
 			return (
-				<Menu.Item key={item.id}>
-					<Link to={item.route}>
-						<Icon type="user"/>
-						<span>{item.name}</span>
-					</Link>
-				</Menu.Item>
-			)
-		} else {
-			return (
-				<SubMenu key={item.id} title={<span><Icon type="mail"/><span>{item.name}</span></span>}>
+				<SubMenu key={item.id} title={<span><Icon type={item.icon}/><span>{item.name}</span></span>}>
 					{
 						item.submenus.map(item => (
 							<Menu.Item key={item.id}>
@@ -72,6 +65,15 @@ class BaseMenu extends Component {
 						))
 					}
 				</SubMenu>
+			)
+		} else {
+			return (
+				<Menu.Item key={item.id}>
+					<Link to={item.route}>
+						<Icon type={item.icon}/>
+						<span>{item.name}</span>
+					</Link>
+				</Menu.Item>
 			)
 		}
 	}

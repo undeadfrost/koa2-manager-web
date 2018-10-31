@@ -6,7 +6,6 @@ import ItemMap from './map'
 import styles from './index.module.less'
 
 const Search = Input.Search
-const FormItem = Form.Item
 
 class ActionBar extends Component {
 	state = {visible: false}
@@ -19,18 +18,17 @@ class ActionBar extends Component {
 	
 	handleOk = (e) => {
 		console.log(e);
-		this.props.form.validateFields((err, values) => {
+		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
 				console.log('Received values of form: ', values);
-				fetchAddRole(values).then(data => {
-					console.log(data)
-				})
+				await fetchAddRole(values)
+				await this.props.getRoleList()
 			}
 		});
 		this.setState({
 			visible: false,
 		});
-		this.props.form.resetFields();
+		this.props.form.resetFields()
 	}
 	
 	handleCancel = (e) => {
@@ -38,7 +36,7 @@ class ActionBar extends Component {
 		this.setState({
 			visible: false,
 		});
-		this.props.form.resetFields();
+		this.props.form.resetFields()
 	}
 	
 	render() {

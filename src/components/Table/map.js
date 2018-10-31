@@ -1,7 +1,4 @@
-import React from "react"
-
 let map = {}
-
 map.role = [
 	{
 		id: 'roleName',
