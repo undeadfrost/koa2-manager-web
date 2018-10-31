@@ -26,9 +26,9 @@ class HeaderView extends Component {
 					onClick={toggle}
 				/>
 				<Dropdown overlay={menu} placement="bottomRight" className={styles.dropdown}>
-					<a className="ant-dropdown-link" href="#">
+					<span>
 						Hover me <Icon type="down"/>
-					</a>
+					</span>
 				</Dropdown>
 			</Header>
 		)

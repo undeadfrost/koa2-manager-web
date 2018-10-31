@@ -1,10 +1,45 @@
 import React, {Component} from 'react'
+import {withRouter} from 'react-router'
 import {Link} from 'react-router-dom'
 import {Icon, Menu} from 'antd'
 
 const SubMenu = Menu.SubMenu
 
 class BaseMenu extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			defaultOpenKeys: [],
+			defaultSelectedKeys: []
+		}
+	}
+	
+	getKeys = () => {
+		const pathname = this.props.location.pathname
+		const menusData = this.props.menusData
+		let defaultOpenKeys = []
+		let defaultSelectedKeys = []
+		for (let i = 0; i < menusData.length; i++) {
+			if (menusData[i].route === pathname) {
+				defaultSelectedKeys.push(menusData[i].id.toString())
+				break
+			}
+			const submenus = menusData[i].submenus
+			for (let j = 0; j < submenus.length; j++) {
+				if (submenus[j].route === pathname) {
+					defaultOpenKeys.push(menusData[i].id.toString())
+					defaultSelectedKeys.push(submenus[j].id.toString())
+					break
+				}
+			}
+		}
+		this.setState({defaultOpenKeys: defaultOpenKeys, defaultSelectedKeys: defaultSelectedKeys})
+	}
+	
+	componentWillMount() {
+		this.getKeys()
+	}
+	
 	getMenuItems = (menusData) => {
 		if (!menusData) {
 			return [];
@@ -18,8 +53,10 @@ class BaseMenu extends Component {
 		if (item.submenus.length === 0) {
 			return (
 				<Menu.Item key={item.id}>
-					<Icon type="user"/>
-					<span>{item.name}</span>
+					<Link to={item.route}>
+						<Icon type="user"/>
+						<span>{item.name}</span>
+					</Link>
 				</Menu.Item>
 			)
 		} else {
@@ -42,11 +79,13 @@ class BaseMenu extends Component {
 	render() {
 		const menusData = this.props.menusData
 		return (
-			<Menu theme="dark" mode="inline">
+			<Menu theme="dark" mode="inline"
+						defaultOpenKeys={this.state.defaultOpenKeys}
+						defaultSelectedKeys={this.state.defaultSelectedKeys}>
 				{this.getMenuItems(menusData)}
 			</Menu>
 		)
 	}
 }
 
-export default BaseMenu
+export default withRouter(BaseMenu)

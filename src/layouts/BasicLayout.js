@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import {Layout, Icon} from 'antd'
+import {Layout} from 'antd'
 import BaseMenu from '../components/Menu/BaseMenu'
 import styles from './index.module.less'
 import ContentRoute from './ContentRoute'
 import HeaderView from "./HeaderView";
 
-const {Header, Sider, Content} = Layout
+const {Sider, Content} = Layout
 
 class BasicLayout extends Component {
 	constructor(props) {

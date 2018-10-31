@@ -24,7 +24,13 @@ class Login extends Component {
 				console.log('Received values of form: ', values);
 				fetchLogin(values).then(data => {
 					this.props.updateUser({accessToken: data, isLogin: true})
-					this.props.history.push('/admin/user')
+					console.log(this.props)
+					if (this.props.location.state) {
+						this.props.history.push(this.props.location.state.from.pathname)
+					} else {
+						this.props.history.push('/admin/user')
+					}
+					
 				})
 			}
 		});

@@ -11,3 +11,11 @@ export const fetchRouteAuth = (params) => {
 export const fetchGetRoute = () => {
 	return http('get', '/admin/menu')
 }
+
+export const fetchGetRole = () => {
+	return http('get', '/admin/role')
+}
+
+export const fetchAddRole = (params) => {
+	return http('post', '/admin/role', params)
+}

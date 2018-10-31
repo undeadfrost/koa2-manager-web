@@ -29,7 +29,7 @@ class PrivateRoute extends Component {
 			<Route {...rest} render={props => (
 				isLogin
 					? <Component {...props}/>
-					: <Redirect to={{pathname: '/admin/login', state: {form: props.location}}}/>
+					: <Redirect to={{pathname: '/admin/login', state: {from: props.location}}}/>
 			)}/>
 		)
 	}

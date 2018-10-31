@@ -1,8 +1,9 @@
 import React from 'react'
-import {Route, Switch} from 'react-router-dom'
+import {Switch} from 'react-router-dom'
+import PermissionRoute from "../components/Auth/PermissionRoute"
 import UserInfo from '../pages/User/Info'
 import List from '../pages/List/index'
-import PermissionRoute from "../components/auth/PermissionRoute";
+import Role from '../pages/Manage/Role'
 
 
 class ContentRoute extends React.Component {
@@ -11,6 +12,7 @@ class ContentRoute extends React.Component {
 			<Switch>
 				<PermissionRoute path='/admin/user' component={UserInfo}/>
 				<PermissionRoute path='/admin/list' component={List}/>
+				<PermissionRoute path='/admin/role' component={Role}/>
 			</Switch>
 		)
 	}
