@@ -3,7 +3,9 @@ import {Table, Divider, Modal} from 'antd'
 import {connect} from 'react-redux'
 import {fetchGetRole} from '../../api/index'
 import ActionBar from '../../components/Table/ActionBar'
-import Tree from '../../components/Tree/Tree'
+import Tree from '../../components/Tree/index'
+import {fetchSaveRoleResources, fetchGetRoleResources} from '../../api/index'
+import PageLoading from '../../components/Loading/PageLoading'
 
 const rowSelection = {
 	onChange: (selectedRowKeys, selectedRows) => {
@@ -24,6 +26,10 @@ class Role extends Component {
 		super(props)
 		this.state = {
 			roleData: [],
+			treeCheckedKeys: [],
+			record: {},
+			defaultCheckedKeys: [],
+			isLoading: true,
 			columns: [{
 				title: 'ID',
 				dataIndex: 'id',
@@ -35,33 +41,51 @@ class Role extends Component {
 				key: 'action',
 				render: (text, record) => (<span>
 					<a onClick={() => {
-						this.showModal()
+						this.showModal(record)
 					}}>配置</a>
 					<Divider type="vertical"/>
 					<a href="javascript:;">删除</a>
 					</span>)
 			}]
 		}
+		
 	}
 	
-	showModal = () => {
+	showModal = async (record) => {
 		this.setState({
 			visible: true,
 		});
+		const res = await fetchGetRoleResources({roleId: record.id, type: 2})
+		this.setState({
+			record: record,
+			isLoading: false,
+			defaultCheckedKeys: res.resources
+		})
 	}
 	
 	handleOk = (e) => {
-		console.log(e);
-		this.setState({
-			visible: false,
-		});
+		let params = {
+			roleId: this.state.record.id,
+			resourceIds: this.state.treeCheckedKeys
+		}
+		fetchSaveRoleResources(params).then(res => {
+			// console.log(res)
+			this.setState({
+				visible: false,
+			});
+		})
 	}
 	
 	handleCancel = (e) => {
-		console.log(e);
+		// console.log(e);
 		this.setState({
 			visible: false,
+			isLoading: true,
 		});
+	}
+	
+	handleTreeCheckedKeys = (treeCheckedKeys) => {
+		this.setState({treeCheckedKeys: treeCheckedKeys})
 	}
 	
 	async componentDidMount() {
@@ -75,6 +99,8 @@ class Role extends Component {
 	}
 	
 	render() {
+		const isLoading = this.state.isLoading
+		console.log(this.state.defaultCheckedKeys)
 		return (
 			<Fragment>
 				<ActionBar getRoleList={this.getRoleList}/>
@@ -88,7 +114,12 @@ class Role extends Component {
 					onOk={this.handleOk}
 					onCancel={this.handleCancel}
 				>
-					<Tree menusData={this.props.menusData}/>
+					{isLoading
+						? <PageLoading/>
+						: <Tree
+							menusData={this.props.menusData}
+							defaultCheckedKeys={this.state.defaultCheckedKeys}
+							onTreeCheckedKeys={this.handleTreeCheckedKeys}/>}
 				</Modal>
 			</Fragment>
 		)

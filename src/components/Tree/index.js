@@ -4,12 +4,9 @@ import {Tree} from 'antd'
 const TreeNode = Tree.TreeNode
 
 class Trees extends Component {
-	onSelect = (selectedKeys, info) => {
-		console.log('selected', selectedKeys, info);
-	}
-	
 	onCheck = (checkedKeys, info) => {
-		console.log('onCheck', checkedKeys, info);
+		this.setState({CheckedKeys: checkedKeys})
+		this.props.onTreeCheckedKeys([...info.halfCheckedKeys, ...checkedKeys])
 	}
 	
 	renderTreeNodes = (data) => {
@@ -31,9 +28,8 @@ class Trees extends Component {
 		return (
 			<Tree
 				checkable={true}
-				onSelect={this.onSelect}
 				onCheck={this.onCheck}
-				defaultCheckedKeys={['2']}
+				defaultCheckedKeys={this.props.defaultCheckedKeys}
 			>
 				{this.renderTreeNodes(menusData)}
 			</Tree>

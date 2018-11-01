@@ -19,3 +19,11 @@ export const fetchGetRole = () => {
 export const fetchAddRole = (params) => {
 	return http('post', '/admin/role', params)
 }
+
+export const fetchSaveRoleResources = (params) => {
+	return http('post', '/admin/role/resources', params)
+}
+
+export const fetchGetRoleResources = (params) => {
+	return http('get', '/admin/role/resources', params)
+}
