@@ -4,8 +4,10 @@ import {connect} from 'react-redux'
 import {fetchGetRole} from '../../api/index'
 import ActionBar from '../../components/Table/ActionBar'
 import Tree from '../../components/Tree/index'
-import {fetchSaveRoleResources, fetchGetRoleResources} from '../../api/index'
+import {fetchDelRole, fetchSaveRoleResources, fetchGetRoleResources} from '../../api/index'
 import PageLoading from '../../components/Loading/PageLoading'
+
+import RoleTable from './RoleTable'
 
 const rowSelection = {
 	onChange: (selectedRowKeys, selectedRows) => {
@@ -21,7 +23,7 @@ const mapStateToProps = state => ({
 	menusData: state.menusData
 })
 
-class Role extends Component {
+class Test extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -44,7 +46,9 @@ class Role extends Component {
 						this.showModal(record)
 					}}>配置</a>
 					<Divider type="vertical"/>
-					<a href="javascript:;">删除</a>
+					<a onClick={() => {
+						this.onDeleteRole(record.id)
+					}}>删除</a>
 					</span>)
 			}]
 		}
@@ -80,20 +84,27 @@ class Role extends Component {
 		// console.log(e);
 		this.setState({
 			visible: false,
-			isLoading: true,
 		});
+		setTimeout(() => {
+			this.setState({isLoading: true})
+		})
 	}
 	
 	handleTreeCheckedKeys = (treeCheckedKeys) => {
 		this.setState({treeCheckedKeys: treeCheckedKeys})
 	}
 	
+	onDeleteRole = async (roleIds) => {
+		await fetchDelRole({roleIds: roleIds})
+		await this.getRoleList()
+	}
+	
 	async componentDidMount() {
 		await this.getRoleList()
 	}
 	
-	getRoleList = async () => {
-		let response = await fetchGetRole()
+	getRoleList = async (params) => {
+		let response = await fetchGetRole(params)
 		let roleData = response.filter(item => (item.key = item.id))
 		this.setState({roleData: roleData})
 	}
@@ -126,4 +137,4 @@ class Role extends Component {
 	}
 }
 
-export default connect(mapStateToProps)(Role)
+export default connect(mapStateToProps)(Test)

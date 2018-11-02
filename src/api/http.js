@@ -42,9 +42,9 @@ instance.interceptors.response.use(
 		if (authorization) {
 			store.dispatch(updateUser(authorization))
 		}
-		if (data.code === 1) {
+		if (data.code === 0) {
 			console.log('success')
-		} else if (data.code === 0) {
+		} else if (data.code === 1) {
 			console.log('error')
 		}
 		return response.data
@@ -65,7 +65,7 @@ instance.interceptors.response.use(
 )
 
 const http = (method, url, params) => {
-	if (method === 'get') {
+	if (method === 'get' || method === 'delete') {
 		params = {params: params}
 	}
 	return new Promise((resolve, reject) => {

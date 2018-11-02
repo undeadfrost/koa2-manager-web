@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Form, Button, Row, Col} from 'antd'
+import {Form, Button, Row, Col, message} from 'antd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {fetchLogin} from '../../api/index'
@@ -23,14 +23,16 @@ class Login extends Component {
 			if (!err) {
 				console.log('Received values of form: ', values);
 				fetchLogin(values).then(data => {
-					this.props.updateUser({accessToken: data, isLogin: true})
-					console.log(this.props)
-					if (this.props.location.state) {
-						this.props.history.push(this.props.location.state.from.pathname)
+					if (data.code === 0) {
+						this.props.updateUser({accessToken: data.token, isLogin: true})
+						if (this.props.location.state) {
+							this.props.history.push(this.props.location.state.from.pathname)
+						} else {
+							this.props.history.push('/admin/user')
+						}
 					} else {
-						this.props.history.push('/admin/user')
+						message.error(data.msg)
 					}
-					
 				})
 			}
 		});

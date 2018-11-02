@@ -29,13 +29,13 @@ class PermissionRoute extends Component {
 	
 	checkAuth = async () => {
 		const pathname = this.props.location.pathname
-		let isAuthenticated = (await fetchRouteAuth({route: pathname}))['isAuth']
-		if (!isAuthenticated) {
-			console.log('error auth')
-			message.error('無權使用，請先登入系統！', 5)
+		let authRes = await fetchRouteAuth({route: pathname})
+		if (!authRes['isAuth']) {
+			console.log(authRes.msg)
+			message.error(authRes.msg, 5)
 		}
 		// 更新视图
-		this.setState({isAuthenticated: isAuthenticated, isLoading: false})
+		this.setState({isAuthenticated: authRes['isAuth'], isLoading: false})
 	}
 	
 	render() {

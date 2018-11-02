@@ -3,7 +3,7 @@ import {Switch} from 'react-router-dom'
 import PermissionRoute from "../components/Auth/PermissionRoute"
 import UserInfo from '../pages/User/Info'
 import List from '../pages/List/index'
-import Role from '../pages/Manage/Role'
+import Role from '../pages/Role/index'
 
 
 class ContentRoute extends React.Component {

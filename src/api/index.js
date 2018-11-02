@@ -12,12 +12,16 @@ export const fetchGetRoute = () => {
 	return http('get', '/admin/menu')
 }
 
-export const fetchGetRole = () => {
-	return http('get', '/admin/role')
+export const fetchGetRole = (params) => {
+	return http('get', '/admin/role', params)
 }
 
 export const fetchAddRole = (params) => {
 	return http('post', '/admin/role', params)
+}
+
+export const fetchDelRole = (params) => {
+	return http('delete', '/admin/role/', params)
 }
 
 export const fetchSaveRoleResources = (params) => {
@@ -27,3 +31,5 @@ export const fetchSaveRoleResources = (params) => {
 export const fetchGetRoleResources = (params) => {
 	return http('get', '/admin/role/resources', params)
 }
+
+

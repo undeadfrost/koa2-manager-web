@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Input, Modal, Form} from "antd"
+import {Button, Input, Modal, Form, message} from "antd"
 import {fetchAddRole} from '../../api/index'
 import InputItem from './InputItem'
 import ItemMap from './map'
@@ -7,8 +7,14 @@ import styles from './index.module.less'
 
 const Search = Input.Search
 
-class ActionBar extends Component {
-	state = {visible: false}
+class Index extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			visible: false,
+			confirmLoading: false
+		}
+	}
 	
 	showModal = () => {
 		this.setState({
@@ -16,27 +22,39 @@ class ActionBar extends Component {
 		});
 	}
 	
-	handleOk = (e) => {
-		console.log(e);
+	handleOk = () => {
+		this.setState({confirmLoading: true})
 		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
-				console.log('Received values of form: ', values);
-				await fetchAddRole(values)
-				await this.props.getRoleList()
+				let addRoleRes = await fetchAddRole(values)
+				this.setState({confirmLoading: false})
+				if (addRoleRes.code === 0) {
+					await this.props.setRoles()
+					message.success(addRoleRes.msg)
+					this.setState({
+						visible: false,
+					})
+					this.props.form.resetFields()
+				} else {
+					message.error(addRoleRes.msg)
+				}
+			} else {
+				this.setState({
+					confirmLoading: false,
+				});
 			}
 		});
+	}
+	
+	handleCancel = () => {
 		this.setState({
 			visible: false,
 		});
 		this.props.form.resetFields()
 	}
 	
-	handleCancel = (e) => {
-		console.log(e);
-		this.setState({
-			visible: false,
-		});
-		this.props.form.resetFields()
+	onSearch = async (value) => {
+		await this.props.setRoles({roleName: value})
 	}
 	
 	render() {
@@ -46,17 +64,18 @@ class ActionBar extends Component {
 				<Search
 					className={styles.search}
 					placeholder="input search text"
-					onSearch={value => console.log(value)}
+					onSearch={this.onSearch}
 					enterButton
 				/>
 				<Button type="primary" onClick={this.showModal}>
 					新增
 				</Button>
 				<Modal
-					title="Basic Modal"
+					title={this.props.title}
 					visible={this.state.visible}
 					onOk={this.handleOk}
 					onCancel={this.handleCancel}
+					confirmLoading={this.state.confirmLoading}
 				>
 					<Form onSubmit={this.handleOk}>
 						{
@@ -77,4 +96,4 @@ class ActionBar extends Component {
 	}
 }
 
-export default Form.create()(ActionBar)
+export default Form.create()(Index)

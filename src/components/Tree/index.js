@@ -5,7 +5,6 @@ const TreeNode = Tree.TreeNode
 
 class Trees extends Component {
 	onCheck = (checkedKeys, info) => {
-		this.setState({CheckedKeys: checkedKeys})
 		this.props.onTreeCheckedKeys([...info.halfCheckedKeys, ...checkedKeys])
 	}
 	
