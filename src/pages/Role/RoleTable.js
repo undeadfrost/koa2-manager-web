@@ -78,6 +78,7 @@ class RoleTable extends Component {
 		const rolesData = this.props.rolesData
 		return (
 			<Table
+				bordered
 				rowSelection={rowSelection}
 				columns={this.state.columns}
 				dataSource={rolesData}/>

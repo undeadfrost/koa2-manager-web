@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import InputItem from './InputItem'
+import InputItem from '../Form/InputItem'
 import ItemMap from './map'
 
 class LoginItem extends Component {

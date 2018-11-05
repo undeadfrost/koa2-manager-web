@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	updateRoles
 }, dispatch)
 
-class Index extends Component {
+class Role extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -59,4 +59,4 @@ class Index extends Component {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default connect(mapStateToProps, mapDispatchToProps)(Role)

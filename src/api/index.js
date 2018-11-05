@@ -32,4 +32,7 @@ export const fetchGetRoleResources = (params) => {
 	return http('get', '/admin/role/resources', params)
 }
 
+export const fetchGetUserList = (params) => {
+	return http('get', '/admin/user', params)
+}
 

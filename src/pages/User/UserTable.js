@@ -1,0 +1,86 @@
+import React, {Component} from 'react'
+import {Divider, Popconfirm, Table, Icon, Badge} from 'antd'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import moment from 'moment'
+import {updateUser} from '../../redux/user/actions'
+
+const rowSelection = {
+	onChange: (selectedRowKeys, selectedRows) => {
+		console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+	},
+	getCheckboxProps: record => ({
+		disabled: record.name === 'Disabled User', // Column configuration not to be checked
+		name: record.name,
+	}),
+}
+
+const mapStateToProps = state => ({
+	userList: state.userData.userList
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({updateUser}, dispatch)
+
+const icon = <Icon type="question-circle-o" style={{color: 'red'}}/>
+
+class UserTable extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			columns: [{
+				title: 'ID',
+				dataIndex: 'id',
+			}, {
+				title: '用户名',
+				dataIndex: 'username',
+			}, {
+				title: '状态',
+				dataIndex: 'status',
+				render: (text) => (this.setStatus(text))
+			}, {
+				title: '手机号',
+				dataIndex: 'mobile'
+			}, {
+				title: '创建时间',
+				dataIndex: 'createdAt',
+				render: (text) => (
+					moment(text).format('YYYY-MM-DD HH:mm:ss')
+				)
+			}, {
+				title: '操作',
+				key: 'action',
+				render: (text, record, index) => (<span>
+					<a onClick={() => {
+					
+					}}>配置</a>
+					<Divider type="vertical"/>
+					<Popconfirm title="是否删除该角色?" cancelText={'取消'} okText={'确定'}
+											icon={icon}>
+					<a href="#">删除</a>
+					</Popconfirm>
+				</span>)
+			}]
+		}
+	}
+	
+	setStatus = (status) => {
+		if (status === 1) {
+			return <Badge status="success" text="启用"/>
+		} else {
+			return <Badge status="error" text="禁用"/>
+		}
+	}
+	
+	render() {
+		const userList = this.props.userList
+		return (
+			<Table
+				bordered
+				rowSelection={rowSelection}
+				columns={this.state.columns}
+				dataSource={userList}/>
+		)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserTable)

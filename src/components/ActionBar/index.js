@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {Button, Input, Modal, Form, message} from "antd"
 import {fetchAddRole} from '../../api/index'
-import InputItem from './InputItem'
+import InputItem from '../Form/InputItem'
 import ItemMap from './map'
 import styles from './index.module.less'
 
 const Search = Input.Search
 
-class Index extends Component {
+class ActionBar extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -96,4 +96,4 @@ class Index extends Component {
 	}
 }
 
-export default Form.create()(Index)
+export default Form.create()(ActionBar)
