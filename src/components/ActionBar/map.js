@@ -20,4 +20,8 @@ map.role = [
 	},
 ]
 
+map.user = [
+	{}
+]
+
 export default map

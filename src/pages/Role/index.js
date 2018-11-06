@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {updateRoles} from '../../redux/role/actions'
 import {fetchGetRole} from '../../api/index'
-import ActionBar from '../../components/ActionBar'
+import RoleActionBar from '../../components/ActionBar/role'
 import RoleTable from './RoleTable'
 import MenuModal from './MenuModal'
 
@@ -47,7 +47,7 @@ class Role extends Component {
 	render() {
 		return (
 			<Fragment>
-				<ActionBar title={'添加角色'} setRoles={this.setRoles}/>
+				<RoleActionBar title={'添加角色'} setRoles={this.setRoles}/>
 				<RoleTable setMenuModalData={this.setMenuModalData}/>
 				<MenuModal
 					roleId={this.state.roleId}

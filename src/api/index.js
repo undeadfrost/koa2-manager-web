@@ -36,3 +36,10 @@ export const fetchGetUserList = (params) => {
 	return http('get', '/admin/user', params)
 }
 
+export const fetchGetUserInfo = (params) => {
+	return http('get', '/admin/user/info', params)
+}
+
+export const fetchAddUser = (params) => {
+	return http('post', '/admin/user', params)
+}

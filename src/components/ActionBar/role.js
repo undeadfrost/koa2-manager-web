@@ -7,7 +7,7 @@ import styles from './index.module.less'
 
 const Search = Input.Search
 
-class ActionBar extends Component {
+class RoleActionBar extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -96,4 +96,4 @@ class ActionBar extends Component {
 	}
 }
 
-export default Form.create()(ActionBar)
+export default Form.create()(RoleActionBar)

@@ -51,7 +51,7 @@ class UserTable extends Component {
 				key: 'action',
 				render: (text, record, index) => (<span>
 					<a onClick={() => {
-					
+						props.setUserModalData(true, '配置用户', record.id)
 					}}>配置</a>
 					<Divider type="vertical"/>
 					<Popconfirm title="是否删除该角色?" cancelText={'取消'} okText={'确定'}
@@ -64,7 +64,7 @@ class UserTable extends Component {
 	}
 	
 	setStatus = (status) => {
-		if (status === 1) {
+		if (status) {
 			return <Badge status="success" text="启用"/>
 		} else {
 			return <Badge status="error" text="禁用"/>

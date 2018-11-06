@@ -109,4 +109,27 @@ map.switch = [
 	},
 ]
 
+map.select = {
+	id: 'role',
+	options: {
+		rules: [
+			{
+				required: true,
+				message: 'Please enter roleName!',
+			},
+		],
+	},
+	formItemParams: {
+		label: '角色',
+		labelCol: {
+			xs: {span: 24},
+			sm: {span: 4},
+		},
+		wrapperCol: {
+			xs: {span: 24},
+			sm: {span: 18},
+		},
+	},
+}
+
 export default map

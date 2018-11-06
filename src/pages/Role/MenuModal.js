@@ -55,7 +55,6 @@ class MenuModal extends Component {
 				defaultCheckedKeys: roleResourcesRes['resources']
 			})
 		}
-		
 	}
 	
 	render() {
