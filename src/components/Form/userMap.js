@@ -6,7 +6,7 @@ map.input = [
 			rules: [
 				{
 					required: true,
-					message: 'Please enter roleName!',
+					message: 'Please enter username!',
 				},
 			],
 		},
@@ -48,7 +48,7 @@ map.input = [
 		}
 	},
 	{
-		id: 'confirmPassword',
+		id: 'confirm',
 		options: {
 			rules: [],
 		},
@@ -115,7 +115,7 @@ map.select = {
 		rules: [
 			{
 				required: true,
-				message: 'Please enter roleName!',
+				message: 'Please select your roleName!',
 			},
 		],
 	},

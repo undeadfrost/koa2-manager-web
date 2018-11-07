@@ -23,27 +23,21 @@ class RoleActionBar extends Component {
 	}
 	
 	handleOk = () => {
-		this.setState({confirmLoading: true})
 		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
+				this.setState({confirmLoading: true})
 				let addRoleRes = await fetchAddRole(values)
 				this.setState({confirmLoading: false})
 				if (addRoleRes.code === 0) {
 					await this.props.setRoles()
 					message.success(addRoleRes.msg)
-					this.setState({
-						visible: false,
-					})
+					this.setState({visible: false})
 					this.props.form.resetFields()
 				} else {
 					message.error(addRoleRes.msg)
 				}
-			} else {
-				this.setState({
-					confirmLoading: false,
-				});
 			}
-		});
+		})
 	}
 	
 	handleCancel = () => {

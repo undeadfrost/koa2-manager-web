@@ -4,7 +4,7 @@ import InputItem from '../../components/Form/InputItem'
 import SwitchItem from '../../components/Form/SwitchItem'
 import SelectItem from '../../components/Form/SelectItem'
 import ItemMap from '../../components/Form/userMap'
-import {fetchGetRole, fetchGetUserInfo} from '../../api/index'
+import {fetchGetRole, fetchGetUserInfo, fetchPutUserInfo} from '../../api/index'
 
 class UserModal extends Component {
 	constructor(props) {
@@ -15,8 +15,20 @@ class UserModal extends Component {
 	}
 	
 	handleOk = () => {
-		this.props.form.validateFields((err, values) => {
-			console.log(values)
+		const userId = this.props.userId
+		this.props.form.validateFields(async (err, values) => {
+			if (!err) {
+				values.userId = userId
+				Object.keys(values).map(item => {
+					if (!values[item]) {
+						delete values[item]
+					}
+				})
+				values.roleId = values.role.key
+				delete values.role
+				console.log(values)
+				await fetchPutUserInfo(values)
+			}
 		})
 	}
 	
@@ -47,7 +59,7 @@ class UserModal extends Component {
 						 title={title}
 						 onOk={this.handleOk}
 						 onCancel={this.handleCancel}>
-				<Form>
+				<Form onSubmit={this.handleOk}>
 					{
 						ItemMap.input.map(item => (
 							<InputItem

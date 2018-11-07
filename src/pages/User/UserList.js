@@ -24,7 +24,11 @@ class Info extends Component {
 	}
 	
 	async componentDidMount() {
-		let userListRes = await fetchGetUserList()
+		await this.setUsers()
+	}
+	
+	setUsers = async (params) => {
+		let userListRes = await fetchGetUserList(params)
 		let userList = userListRes.filter(item => (item.key = item.id))
 		this.props.updateUser({userList: userList})
 	}
@@ -45,10 +49,11 @@ class Info extends Component {
 	render() {
 		return (
 			<Fragment>
-				<UserActionBar/>
+				<UserActionBar setUsers={this.setUsers} title={'新增用户'}/>
 				<UserTable setUserModalData={this.setUserModalData}/>
 				{
 					this.state.userModalVisible && <UserModal
+						userId={this.state.userId}
 						visible={this.state.userModalVisible}
 						title={this.state.userModalTitle}
 						setVisible={this.setUserModalVisible} userId={this.state.userId}/>
