@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import {Divider, Popconfirm, Table, Icon, Badge} from 'antd'
+import {Divider, Popconfirm, Table, Icon, Badge, message} from 'antd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import moment from 'moment'
 import {updateUser} from '../../redux/user/actions'
+import {fetchDelRole, fetchDelUser} from "../../api";
 
 const rowSelection = {
 	onChange: (selectedRowKeys, selectedRows) => {
@@ -54,8 +55,8 @@ class UserTable extends Component {
 						props.setUserModalData(true, '配置用户', record.id)
 					}}>配置</a>
 					<Divider type="vertical"/>
-					<Popconfirm title="是否删除该角色?" cancelText={'取消'} okText={'确定'}
-											icon={icon}>
+					<Popconfirm title="是否删除该用户?" cancelText={'取消'} okText={'确定'}
+											icon={icon} onConfirm={this.delConfirm.bind(this, record.id)}>
 					<a href="#">删除</a>
 					</Popconfirm>
 				</span>)
@@ -68,6 +69,16 @@ class UserTable extends Component {
 			return <Badge status="success" text="启用"/>
 		} else {
 			return <Badge status="error" text="禁用"/>
+		}
+	}
+	
+	delConfirm = async (userId) => {
+		const delUserRes = await fetchDelUser({userId: userId})
+		if (delUserRes.code === 0) {
+			message.success(delUserRes['msg'])
+			await this.props.setUsers()
+		} else {
+			message.error(delUserRes['msg'])
 		}
 	}
 	

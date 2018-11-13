@@ -50,7 +50,7 @@ class Info extends Component {
 		return (
 			<Fragment>
 				<UserActionBar setUsers={this.setUsers} title={'新增用户'}/>
-				<UserTable setUserModalData={this.setUserModalData}/>
+				<UserTable setUserModalData={this.setUserModalData} setUsers={this.setUsers}/>
 				{
 					this.state.userModalVisible && <UserModal
 						userId={this.state.userId}

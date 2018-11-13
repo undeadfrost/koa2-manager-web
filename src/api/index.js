@@ -44,6 +44,10 @@ export const fetchAddUser = (params) => {
 	return http('post', '/admin/user', params)
 }
 
+export const fetchDelUser = (params) => {
+	return http('delete', '/admin/user', params)
+}
+
 export const fetchPutUserInfo = (params) => {
 	return http('put', '/admin/user/info', params)
 }
