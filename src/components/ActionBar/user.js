@@ -64,6 +64,7 @@ class UserActionBar extends Component {
 					this.setState({visible: false})
 					this.props.form.resetFields()
 					await this.props.setUsers()
+					message.success(addUserRes['msg'])
 				} else {
 					message.error(addUserRes['msg'])
 				}

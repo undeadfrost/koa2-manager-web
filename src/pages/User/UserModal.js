@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Modal, Form} from 'antd'
+import {Modal, Form, message} from 'antd'
 import InputItem from '../../components/Form/InputItem'
 import SwitchItem from '../../components/Form/SwitchItem'
 import SelectItem from '../../components/Form/SelectItem'
@@ -19,15 +19,17 @@ class UserModal extends Component {
 		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
 				values.userId = userId
-				Object.keys(values).map(item => {
-					if (!values[item]) {
-						delete values[item]
-					}
-				})
 				values.roleId = values.role.key
 				delete values.role
 				console.log(values)
-				await fetchPutUserInfo(values)
+				const putUserRes = await fetchPutUserInfo(values)
+				if (putUserRes.code === 0) {
+					this.props.setVisible(false)
+					this.props.form.resetFields()
+					message.success(putUserRes['msg'])
+				} else {
+					message.error(putUserRes['msg'])
+				}
 			}
 		})
 	}
