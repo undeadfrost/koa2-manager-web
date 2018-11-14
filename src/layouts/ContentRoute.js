@@ -4,6 +4,7 @@ import PermissionRoute from "../components/Auth/PermissionRoute"
 import UserList from '../pages/User/UserList'
 import List from '../pages/List/index'
 import Role from '../pages/Role/index'
+import Route from '../pages/Route/index'
 
 
 class ContentRoute extends React.Component {
@@ -13,6 +14,7 @@ class ContentRoute extends React.Component {
 				<PermissionRoute path='/admin/user' component={UserList}/>
 				<PermissionRoute path='/admin/list' component={List}/>
 				<PermissionRoute path='/admin/role' component={Role}/>
+				<PermissionRoute path='/admin/route' component={Route}/>
 			</Switch>
 		)
 	}

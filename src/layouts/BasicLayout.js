@@ -32,7 +32,7 @@ class BasicLayout extends Component {
 					collapsed={this.state.collapsed}
 				>
 					<div className={styles.logo}/>
-					<BaseMenu menusData={this.props.menusData}/>
+					<BaseMenu navsData={this.props.navsData}/>
 				</Sider>
 				<Layout>
 					<HeaderView collapsed={this.state.collapsed} toggle={this.toggle}/>

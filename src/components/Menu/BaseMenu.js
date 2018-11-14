@@ -16,19 +16,19 @@ class BaseMenu extends Component {
 	
 	getKeys = () => {
 		const pathname = this.props.location.pathname
-		const menusData = this.props.menusData
+		const navsData = this.props.navsData
 		let defaultOpenKeys = []
 		let defaultSelectedKeys = []
-		for (let i = 0; i < menusData.length; i++) {
-			if (menusData[i].route === pathname) {
-				defaultSelectedKeys.push(menusData[i].id.toString())
+		for (let i = 0; i < navsData.length; i++) {
+			if (navsData[i].route === pathname) {
+				defaultSelectedKeys.push(navsData[i].id.toString())
 				break
 			}
-			const submenus = menusData[i].submenus
+			const submenus = navsData[i].submenus
 			if (submenus) {
 				for (let j = 0; j < submenus.length; j++) {
 					if (submenus[j].route === pathname) {
-						defaultOpenKeys.push(menusData[i].id.toString())
+						defaultOpenKeys.push(navsData[i].id.toString())
 						defaultSelectedKeys.push(submenus[j].id.toString())
 						break
 					}
@@ -79,12 +79,12 @@ class BaseMenu extends Component {
 	}
 	
 	render() {
-		const menusData = this.props.menusData
+		const navsData = this.props.navsData
 		return (
 			<Menu theme="dark" mode="inline"
 						defaultOpenKeys={this.state.defaultOpenKeys}
 						defaultSelectedKeys={this.state.defaultSelectedKeys}>
-				{this.getMenuItems(menusData)}
+				{this.getMenuItems(navsData)}
 			</Menu>
 		)
 	}

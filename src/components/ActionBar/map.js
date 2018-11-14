@@ -18,6 +18,23 @@ map.role = [
 			placeholder: '请输入角色名',
 		}
 	},
+	{
+		id: 'remark',
+		options: {
+			rules: [
+				{
+					message: 'Please enter remark!',
+				},
+			],
+		},
+		formItemParams: {
+			label: '备注'
+		},
+		props: {
+			type: 'text',
+			placeholder: '请输入备注',
+		}
+	},
 ]
 
 map.user = {

@@ -61,6 +61,7 @@ class MenuModal extends Component {
 		const isLoading = this.state.isLoading
 		const title = this.props.title
 		const visible = this.props.visible
+		const navList = this.props.menusData.navList
 		return (
 			<Modal
 				title={title}
@@ -72,7 +73,7 @@ class MenuModal extends Component {
 				{isLoading
 					? <PageLoading/>
 					: <Tree
-						menusData={this.props.menusData}
+						navList={navList}
 						defaultCheckedKeys={this.state.defaultCheckedKeys}
 						onTreeCheckedKeys={this.handleTreeCheckedKeys}/>}
 			</Modal>

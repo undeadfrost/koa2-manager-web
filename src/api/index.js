@@ -51,3 +51,7 @@ export const fetchDelUser = (params) => {
 export const fetchPutUserInfo = (params) => {
 	return http('put', '/admin/user/info', params)
 }
+
+export const fetchgetRoute = () => {
+	return http('get', '/admin/route')
+}

@@ -23,20 +23,20 @@ class Layout extends Component {
 	}
 	
 	componentDidMount = async () => {
-		if (!this.props.menusData) {
+		if (this.props.menusData.navList.length === 0) {
 			const menusData = await fetchGetRoute()
-			this.props.updateMenu(menusData)
+			this.props.updateMenu({...menusData})
 		}
 		this.setState({isLoading: false})
 	}
 	
 	render() {
 		let isLoading = this.state.isLoading
-		const menusData = this.props.menusData
+		const navsData = this.props.menusData.navList
 		return (
 			isLoading
 				? <PageLoading/>
-				: <BasicLayout menusData={menusData}/>
+				: <BasicLayout navsData={navsData}/>
 		)
 	}
 }

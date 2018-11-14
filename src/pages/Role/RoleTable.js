@@ -37,6 +37,9 @@ class RoleTable extends Component {
 				title: '角色名称',
 				dataIndex: 'roleName',
 			}, {
+				title: '备注',
+				dataIndex: 'remark',
+			}, {
 				title: '操作',
 				key: 'action',
 				render: (text, record, index) => (<span>

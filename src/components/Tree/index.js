@@ -23,14 +23,14 @@ class Trees extends Component {
 	}
 	
 	render() {
-		const menusData = this.props.menusData
+		const navList = this.props.navList
 		return (
 			<Tree
 				checkable={true}
 				onCheck={this.onCheck}
 				defaultCheckedKeys={this.props.defaultCheckedKeys}
 			>
-				{this.renderTreeNodes(menusData)}
+				{this.renderTreeNodes(navList)}
 			</Tree>
 		)
 	}

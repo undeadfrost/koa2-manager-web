@@ -1,13 +1,14 @@
 import {UPDATE_MENU} from './actions'
 
-const initState = null
+const initState = {
+	navList: [],
+	permissions: []
+}
 
 export default (state = initState, action) => {
 	switch (action.type) {
 		case UPDATE_MENU:
-			return [
-				...action.payload
-			]
+			return {...state, ...action.payload}
 		default:
 			return state
 	}
