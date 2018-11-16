@@ -28,8 +28,8 @@ export const fetchSaveRoleResources = (params) => {
 	return http('post', '/admin/role/resources', params)
 }
 
-export const fetchGetRoleResources = (params) => {
-	return http('get', '/admin/role/resources', params)
+export const fetchGetRoleInfo = (params) => {
+	return http('get', '/admin/role/info', params)
 }
 
 export const fetchGetUserList = (params) => {
