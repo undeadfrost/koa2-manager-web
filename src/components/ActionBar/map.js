@@ -158,7 +158,7 @@ map.user = {
 		},
 	],
 	select: {
-		id: 'role',
+		id: 'roles',
 		options: {
 			rules: [
 				{

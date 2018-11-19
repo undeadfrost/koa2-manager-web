@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import RouteTable from './RouteTable'
-import {fetchgetRoute} from '../../api/index'
+import RouteTable from './MenuTable'
+import {fetchgetMenu} from '../../api/index'
 import {updateRoute} from '../../redux/route/actions'
 
 const mapStateToProps = state => ({routeData: state.routeData})
@@ -11,7 +11,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({updateRoute}, dispatc
 
 class Route extends Component {
 	getRoutes = async () => {
-		let routesRes = await fetchgetRoute()
+		let routesRes = await fetchgetMenu()
 		this.props.updateRoute(routesRes)
 	}
 	

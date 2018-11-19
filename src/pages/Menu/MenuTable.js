@@ -8,7 +8,7 @@ const mapStateToProps = state => ({routeData: state.routeData})
 
 const mapDispatchToProps = dispatch => bindActionCreators({updateRoute}, dispatch)
 
-class RouteTable extends Component {
+class MenuTable extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -37,4 +37,4 @@ class RouteTable extends Component {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RouteTable)
+export default connect(mapStateToProps, mapDispatchToProps)(MenuTable)

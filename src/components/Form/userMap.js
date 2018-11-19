@@ -110,7 +110,7 @@ map.switch = [
 ]
 
 map.select = {
-	id: 'role',
+	id: 'roles',
 	options: {
 		rules: [
 			{

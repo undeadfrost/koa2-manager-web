@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Layout} from 'antd'
-import BaseMenu from '../components/Menu/BaseMenu'
+import BaseMenu from '../components/Nav/BaseNav'
 import styles from './index.module.less'
 import ContentRoute from './ContentRoute'
 import HeaderView from "./HeaderView";

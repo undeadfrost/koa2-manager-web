@@ -10,10 +10,10 @@ class Trees extends Component {
 	
 	renderTreeNodes = (data) => {
 		return data.map(item => {
-			if (item.submenus) {
+			if (item.children) {
 				return (
 					<TreeNode title={item.name} key={item.id}>
-						{this.renderTreeNodes(item.submenus)}
+						{this.renderTreeNodes(item.children)}
 					</TreeNode>
 				)
 			} else {
@@ -23,14 +23,14 @@ class Trees extends Component {
 	}
 	
 	render() {
-		const navList = this.props.navList
+		const nodeList = this.props.nodeList
 		return (
 			<Tree
 				checkable={true}
 				onCheck={this.onCheck}
 				defaultCheckedKeys={this.props.defaultCheckedKeys}
 			>
-				{this.renderTreeNodes(navList)}
+				{this.renderTreeNodes(nodeList)}
 			</Tree>
 		)
 	}

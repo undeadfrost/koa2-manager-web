@@ -5,7 +5,7 @@ import {Icon, Menu} from 'antd'
 
 const SubMenu = Menu.SubMenu
 
-class BaseMenu extends Component {
+class BaseNav extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -90,4 +90,4 @@ class BaseMenu extends Component {
 	}
 }
 
-export default withRouter(BaseMenu)
+export default withRouter(BaseNav)

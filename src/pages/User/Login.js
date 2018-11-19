@@ -28,7 +28,7 @@ class Login extends Component {
 						if (this.props.location.state) {
 							this.props.history.push(this.props.location.state.from.pathname)
 						} else {
-							this.props.history.push('/admin/user')
+							this.props.history.push('/admin/welcome')
 						}
 					} else {
 						message.error(data.msg)

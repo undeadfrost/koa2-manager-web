@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Modal, message} from "antd"
 import PageLoading from "../../components/Loading/PageLoading"
 import Tree from "../../components/Tree"
-import {fetchGetRoleInfo, fetchSaveRoleResources} from '../../api/index'
+import {fetchGetRoleInfo, fetchSaveRoleInfo} from '../../api/index'
 
 const mapStateToProps = state => ({
     menusData: state.menusData
@@ -15,8 +15,9 @@ class MenuModal extends Component {
         this.state = {
             isLoading: true,
             confirmLoading: false,
+            nodeList: [],
             defaultCheckedKeys: [],
-            checkedKeys: []
+            checkedKeys: ''
         }
     }
 
@@ -28,15 +29,15 @@ class MenuModal extends Component {
         this.setState({confirmLoading: true})
         let params = {
             roleId: this.props.roleId,
-            resourceIds: this.state.checkedKeys
+            menuIds: this.state.checkedKeys
         }
-        let saveRoleResourcesRes = await fetchSaveRoleResources(params)
-        if (saveRoleResourcesRes.code === 0) {
-            message.success(saveRoleResourcesRes['msg'])
+        let saveRoleInfoRes = await fetchSaveRoleInfo(params)
+        if (saveRoleInfoRes.code === 0) {
+            message.success(saveRoleInfoRes['msg'])
             this.props.setVisible(false)
             this.setState({isLoading: true})
         } else {
-            message.error(saveRoleResourcesRes['msg'])
+            message.error(saveRoleInfoRes['msg'])
         }
         this.setState({confirmLoading: false})
     }
@@ -49,10 +50,16 @@ class MenuModal extends Component {
         const roleId = nextProps['roleId']
         if (nextProps.visible) {
             this.setState({isLoading: true})
-            const roleResourcesRes = await fetchGetRoleInfo({roleId: roleId})
+            const roleInfoRes = await fetchGetRoleInfo({roleId: roleId})
+            let sysMenuAll = roleInfoRes['userMenuAll']
+            let nodeList = sysMenuAll.filter(item => item.parent === 0)
+            for (let i = 0; i < nodeList.length; i++) {
+                nodeList[i].children = sysMenuAll.filter(item => (item.parent === nodeList[i].id))
+            }
             this.setState({
                 isLoading: false,
-                defaultCheckedKeys: roleResourcesRes['resources']
+                defaultCheckedKeys: roleInfoRes['roleMenu'],
+                nodeList: nodeList
             })
         }
     }
@@ -61,7 +68,6 @@ class MenuModal extends Component {
         const isLoading = this.state.isLoading
         const title = this.props.title
         const visible = this.props.visible
-        const navList = this.props.menusData.navList
         return (
             <Modal
                 title={title}
@@ -73,7 +79,7 @@ class MenuModal extends Component {
                 {isLoading
                     ? <PageLoading/>
                     : <Tree
-                        navList={navList}
+                        nodeList={this.state.nodeList}
                         defaultCheckedKeys={this.state.defaultCheckedKeys}
                         onTreeCheckedKeys={this.handleTreeCheckedKeys}/>}
             </Modal>
