@@ -1,7 +1,7 @@
 import {UPDATE_USER} from './actions'
 
 const initState = {
-	accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTU0MjYyMDY3MSwiZXhwIjoxNTQyNjI0MjcxfQ.yjL6w1vCB98Q3AptHwryWRA0oWQaWM5YhU0uPP0CgkA',
+	accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTU0MzIxNzM1OCwiZXhwIjoxNTQzMjIwOTU4fQ.GmBLkLo24wlhdZzYhMp8-8ZOAXDq1BflqIYv0TjM2Jw',
 	isLogin: true,
 	info: null,
 	userList: []
