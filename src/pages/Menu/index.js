@@ -1,29 +1,31 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import RouteTable from './MenuTable'
-import {fetchgetMenu} from '../../api/index'
-import {updateRoute} from '../../redux/route/actions'
+import MenuTable from './MenuTable'
+import MenuActionBar from '../../components/ActionBar/MenuActionBar'
+import {fetchGetMenu} from '../../api/index'
+import {updateMenu} from '../../redux/menu/actions'
+import {formatRoutes} from '../../common/utils'
 
-const mapStateToProps = state => ({routeData: state.routeData})
+const mapStateToProps = state => ({menusList: state.menusData.menusList})
 
-const mapDispatchToProps = dispatch => bindActionCreators({updateRoute}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({updateMenu}, dispatch)
 
 class Route extends Component {
-	getRoutes = async () => {
-		let routesRes = await fetchgetMenu()
-		this.props.updateRoute(routesRes)
+	getMenus = async () => {
+		let menusRes = await fetchGetMenu()
+		this.props.updateMenu({menusList: formatRoutes(menusRes)})
 	}
 	
 	async componentDidMount() {
-		await this.getRoutes()
+		await this.getMenus()
 	}
 	
 	render() {
 		return (
 			<Fragment>
-				<h1>Route</h1>
-				<RouteTable/>
+				<MenuActionBar title={'新增菜单'} getMenus={this.getMenus}/>
+				<MenuTable/>
 			</Fragment>
 		)
 	}

@@ -181,4 +181,228 @@ map.user = {
 	}
 }
 
+map.menu = {
+	input: [
+		{
+			id: 'routeName',
+			options: {
+				rules: [
+					{
+						required: true,
+						message: 'Please input your menuName!',
+					},
+				],
+			},
+			formItemParams: {
+				label: '菜单名称',
+				labelCol: {
+					xs: {span: 24},
+					sm: {span: 4},
+				},
+				wrapperCol: {
+					xs: {span: 24},
+					sm: {span: 18},
+				},
+			},
+			props: {
+				type: 'text',
+				placeholder: '菜单名称',
+			}
+		},
+		{
+			id: 'menuRoute',
+			options: {
+				rules: [
+					{
+						required: true,
+						message: 'Please input your menuRoute!',
+					},
+				],
+			},
+			formItemParams: {
+				label: '菜单路由',
+				labelCol: {
+					xs: {span: 24},
+					sm: {span: 4},
+				},
+				wrapperCol: {
+					xs: {span: 24},
+					sm: {span: 18},
+				},
+			},
+			props: {
+				type: 'text',
+				placeholder: '菜单路由',
+			}
+		},
+		{
+			id: 'menuPermission',
+			options: {
+				rules: [],
+			},
+			formItemParams: {
+				label: '权限标识',
+				labelCol: {
+					xs: {span: 24},
+					sm: {span: 4},
+				},
+				wrapperCol: {
+					xs: {span: 24},
+					sm: {span: 18},
+				},
+			},
+			props: {
+				type: 'text',
+				placeholder: '用多个逗号分隔，例如：sys:user:list,sys:user:save',
+			}
+		},
+		{
+			id: 'icon',
+			options: {
+				rules: [],
+				initialValue: "file-text"
+			},
+			formItemParams: {
+				label: '菜单图标',
+				labelCol: {
+					xs: {span: 24},
+					sm: {span: 4},
+				},
+				wrapperCol: {
+					xs: {span: 24},
+					sm: {span: 18},
+				},
+			},
+			props: {
+				type: 'text',
+				placeholder: '菜单图标',
+			}
+		},
+	],
+	select: [
+		{
+			id: 'parentMenu',
+			options: {
+				rules: [
+					{
+						required: true,
+						message: 'Please select your parentMenu!',
+					},
+				],
+				initialValue: {key: 0, label: '一级菜单'},
+			},
+			formItemParams: {
+				label: '上级菜单',
+				labelCol: {
+					xs: {span: 24},
+					sm: {span: 4},
+				},
+				wrapperCol: {
+					xs: {span: 24},
+					sm: {span: 18},
+				},
+			},
+		},
+	],
+	number: {
+		id: 'orderNum',
+		options: {
+			rules: [
+				{
+					required: true,
+					message: 'Please input your orderNum!',
+				},
+			],
+			initialValue: 1,
+		},
+		formItemParams: {
+			label: '排序号',
+			labelCol: {
+				xs: {span: 24},
+				sm: {span: 4},
+			},
+			wrapperCol: {
+				xs: {span: 24},
+				sm: {span: 18},
+			},
+		},
+	}
+}
+
+map.catalog = {
+	input: [
+		{
+			id: 'routeName',
+			options: {
+				rules: [
+					{
+						required: true,
+						message: 'Please input your catalogName!',
+					},
+				],
+			},
+			formItemParams: {
+				label: '目录名称',
+				labelCol: {
+					xs: {span: 24},
+					sm: {span: 4},
+				},
+				wrapperCol: {
+					xs: {span: 24},
+					sm: {span: 18},
+				},
+			},
+			props: {
+				type: 'text',
+				placeholder: '目录名称',
+			}
+		},
+		{
+			id: 'icon',
+			options: {
+				rules: [],
+				initialValue: "file-text"
+			},
+			formItemParams: {
+				label: '目录图标',
+				labelCol: {
+					xs: {span: 24},
+					sm: {span: 4},
+				},
+				wrapperCol: {
+					xs: {span: 24},
+					sm: {span: 18},
+				},
+			},
+			props: {
+				type: 'text',
+				placeholder: '目录图标',
+			}
+		},
+	],
+	number: {
+		id: 'orderNum',
+		options: {
+			rules: [
+				{
+					required: true,
+					message: 'Please input your orderNumber!',
+				},
+			],
+			initialValue: 1,
+		},
+		formItemParams: {
+			label: '排序号',
+			labelCol: {
+				xs: {span: 24},
+				sm: {span: 4},
+			},
+			wrapperCol: {
+				xs: {span: 24},
+				sm: {span: 18},
+			},
+		},
+	}
+}
+
 export default map

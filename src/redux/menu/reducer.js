@@ -2,6 +2,7 @@ import {UPDATE_MENU} from './actions'
 
 const initState = {
 	navList: [],
+	menusList: [],
 	permissions: []
 }
 

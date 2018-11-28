@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux'
 import {updateUser} from '../../redux/user/actions'
 import UserTable from './UserTable'
 import UserModal from './UserModal'
-import UserActionBar from '../../components/ActionBar/user'
+import UserActionBar from '../../components/ActionBar/UserActionBar'
 
 const mapStateToProps = state => ({
     userList: state.userData.userList

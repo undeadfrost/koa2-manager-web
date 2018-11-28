@@ -52,6 +52,14 @@ export const fetchPutUserInfo = (params) => {
 	return http('put', '/admin/user/info', params)
 }
 
-export const fetchgetMenu = () => {
+export const fetchGetMenu = () => {
 	return http('get', '/admin/menu')
+}
+
+export const fetchAddMenu = (params) => {
+	return http('post', '/admin/menu', params)
+}
+
+export const fetchDelMenu = (params) => {
+	return http('delete', '/admin/menu', params)
 }

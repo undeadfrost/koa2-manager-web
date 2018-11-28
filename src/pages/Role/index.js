@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {updateRoles} from '../../redux/role/actions'
 import {fetchGetRole} from '../../api/index'
-import RoleActionBar from '../../components/ActionBar/role'
+import RoleActionBar from '../../components/ActionBar/RoleActionBar'
 import RoleTable from './RoleTable'
 import MenuModal from './MenuModal'
 
