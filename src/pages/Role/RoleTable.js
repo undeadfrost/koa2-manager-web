@@ -69,7 +69,7 @@ class RoleTable extends Component {
 	}
 	
 	roleRowConfiguration = (record) => {
-		this.props.setMenuModalData(true, record.roleName, record.id)
+		this.props.setRoleModalData(true, record.roleName, record.id)
 	}
 	
 	async componentDidMount() {

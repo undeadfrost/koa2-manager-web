@@ -3,7 +3,7 @@ import {Table, Icon, Tag, Divider, Popconfirm} from 'antd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from "redux"
 import {updateMenu} from "../../redux/menu/actions"
-import {fetchDelMenu, fetchGetMenu} from "../../api/index"
+import {fetchDelMenu, fetchGetMenu, fetchGetMenuInfo} from "../../api/index"
 import {formatRoutes} from '../../common/utils'
 
 const icon = <Icon type="question-circle-o" style={{color: 'red'}}/>
@@ -32,15 +32,16 @@ class MenuTable extends Component {
 				dataIndex: 'route'
 			}, {
 				title: '权限',
+				// width: 300,
 				dataIndex: 'permission'
 			}, {
 				title: '操作',
 				key: 'action',
-				width: 120,
+				width: 110,
 				fixed: 'right',
 				render: (text, record, index) => (<span>
 					<a onClick={() => {
-						this.roleRowConfiguration(record)
+						this.menuRowConfiguration(record)
 					}}>配置</a>
 					<Divider type="vertical"/>
 					<Popconfirm title="是否删除该菜单?" cancelText={'取消'} okText={'确定'}
@@ -50,6 +51,10 @@ class MenuTable extends Component {
 				</span>)
 			}]
 		}
+	}
+	
+	menuRowConfiguration = async (record) => {
+		this.props.setMenuModalData(record.id, true)
 	}
 	
 	delConfirm = async (menuId) => {
@@ -63,7 +68,10 @@ class MenuTable extends Component {
 	render() {
 		const dataSource = this.props.menusList
 		return (
-			<Table columns={this.state.columns} dataSource={dataSource} scroll={{x: 1000}}/>
+			<Table
+				columns={this.state.columns}
+				dataSource={dataSource}
+				scroll={{x: 1000}} indentSize={10}/>
 		)
 	}
 }

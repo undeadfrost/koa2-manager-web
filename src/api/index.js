@@ -63,3 +63,11 @@ export const fetchAddMenu = (params) => {
 export const fetchDelMenu = (params) => {
 	return http('delete', '/admin/menu', params)
 }
+
+export const fetchGetMenuInfo = (params) => {
+	return http('get', '/admin/menu/info', params)
+}
+
+export const fetchPutMenuInfo = (params) => {
+	return http('put', '/admin/menu/info', params)
+}

@@ -19,8 +19,8 @@ class Role extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			menuModalVisible: false,
-			menuModalTitle: '',
+			roleModalVisible: false,
+			roleModalTitle: '',
 			roleId: ''
 		}
 	}
@@ -31,29 +31,28 @@ class Role extends Component {
 		this.props.updateRoles(rolesData)
 	}
 	
-	setMenuModalData = (menuModalVisible, menuModalTitle, roleId) => {
+	setRoleModalData = (roleModalVisible, roleModalTitle, roleId) => {
 		this.setState({
-			menuModalVisible: menuModalVisible,
-			menuModalTitle: menuModalTitle,
+			roleModalVisible: roleModalVisible,
+			roleModalTitle: roleModalTitle,
 			roleId: roleId
 		})
 	}
 	
-	setMenuModalVisible = (visible) => {
-		console.log(visible)
-		this.setState({menuModalVisible: visible})
+	setRoleModalVisible = (visible) => {
+		this.setState({roleModalVisible: visible})
 	}
 	
 	render() {
 		return (
 			<Fragment>
 				<RoleActionBar title={'添加角色'} setRoles={this.setRoles}/>
-				<RoleTable setMenuModalData={this.setMenuModalData}/>
+				<RoleTable setRoleModalData={this.setRoleModalData}/>
 				<MenuModal
 					roleId={this.state.roleId}
-					visible={this.state.menuModalVisible}
-					setVisible={this.setMenuModalVisible}
-					title={this.state.menuModalTitle}/>
+					visible={this.state.roleModalVisible}
+					setVisible={this.setRoleModalVisible}
+					title={this.state.roleModalTitle}/>
 			</Fragment>
 		)
 	}
