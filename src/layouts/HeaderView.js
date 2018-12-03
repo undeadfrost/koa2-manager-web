@@ -1,23 +1,41 @@
 import React, {Component} from 'react'
-import {Icon, Layout, Dropdown, Menu} from "antd"
+import {withRouter} from 'react-router'
+import {connect} from 'react-redux'
+import {Icon, Layout, Dropdown, Menu, message} from "antd"
+import {persistor} from '../redux/index'
 import styles from './index.module.less'
 
 const {Header} = Layout
 
-const menu = (
-	<Menu>
-		<Menu.Item>
-			<a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">修改密码</a>
-		</Menu.Item>
-		<Menu.Item>
-			<a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">退出登录</a>
-		</Menu.Item>
-	</Menu>
-)
+const mapStateToProps = state => ({
+	userInfo: state.userData.userInfo
+})
 
 class HeaderView extends Component {
+	state = {
+		menu: (
+			<Menu>
+				<Menu.Item>
+					<a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">个人中心</a>
+				</Menu.Item>
+				<Menu.Item>
+					<a href="javascript:void(0);" onClick={() => this.clearStore()}>退出登录</a>
+				</Menu.Item>
+			</Menu>
+		)
+	}
+	
+	// 注销登录，清空store
+	clearStore = async () => {
+		await persistor.purge()
+		message.success('注销成功，请重新登录')
+		this.props.history.push('/admin/login')
+	}
+	
 	render() {
 		const {collapsed, toggle} = this.props
+		const {username} = this.props.userInfo
+		console.log(this.props.userInfo)
 		return (
 			<Header className={styles.header}>
 				<Icon
@@ -25,9 +43,9 @@ class HeaderView extends Component {
 					type={collapsed ? 'menu-unfold' : 'menu-fold'}
 					onClick={toggle}
 				/>
-				<Dropdown overlay={menu} placement="bottomRight" className={styles.dropdown}>
+				<Dropdown overlay={this.state.menu} placement="bottomRight" className={styles.dropdown}>
 					<span>
-						Hover me <Icon type="down"/>
+						{username}<Icon type="down"/>
 					</span>
 				</Dropdown>
 			</Header>
@@ -35,4 +53,4 @@ class HeaderView extends Component {
 	}
 }
 
-export default HeaderView
+export default connect(mapStateToProps)(withRouter(HeaderView))

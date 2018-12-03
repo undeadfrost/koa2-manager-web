@@ -3,7 +3,7 @@ import {UPDATE_USER} from './actions'
 const initState = {
 	accessToken: '',
 	isLogin: false,
-	info: null,
+	userInfo: null,
 	userList: []
 }
 

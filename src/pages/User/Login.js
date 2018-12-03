@@ -24,7 +24,7 @@ class Login extends Component {
 				console.log('Received values of form: ', values);
 				fetchLogin(values).then(data => {
 					if (data.code === 0) {
-						this.props.updateUser({accessToken: data.token, isLogin: true})
+						this.props.updateUser({accessToken: data.token, isLogin: true, userInfo: data.userInfo})
 						if (this.props.location.state) {
 							this.props.history.push(this.props.location.state.from.pathname)
 						} else {
