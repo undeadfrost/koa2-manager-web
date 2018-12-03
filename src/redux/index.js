@@ -1,9 +1,16 @@
 import {createStore, combineReducers} from 'redux'
+import {persistStore, persistReducer} from 'redux-persist'
+import storage from 'redux-persist/lib/storage/session'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import userReducer from './user/reducer'
 import menuReducer from './menu/reducer'
 import rolesReducer from './role/reducer'
 import routeReducer from './route/reducer'
+
+const persistConfig = {
+	key: 'root',
+	storage,
+}
 
 const allReducer = {
 	userData: userReducer,
@@ -12,6 +19,7 @@ const allReducer = {
 	routeData: routeReducer
 }
 
-const store = createStore(combineReducers(allReducer), composeWithDevTools())
+const persistedReducer = persistReducer(persistConfig, combineReducers(allReducer))
+export const store = createStore(persistedReducer, composeWithDevTools())
+export const persistor = persistStore(store)
 
-export default store

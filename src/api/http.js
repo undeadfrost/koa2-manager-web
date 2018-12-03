@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import config from '../config'
-import store from '../redux/index'
+import {store} from '../redux/index'
 import {updateUser} from '../redux/user/actions'
 
 // 自定义Axios实例
