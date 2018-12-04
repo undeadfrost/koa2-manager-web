@@ -47,7 +47,7 @@ class PermissionRoute extends Component {
 				: <Route {...rest} render={props => (
 					isAuthenticated
 						? <Component {...props}/>
-						: <Redirect to={{pathname: '/admin/login', state: {from: props.location}}}/>
+						: <Redirect to={{pathname: '/admin/welcome', state: {from: props.location}}}/>
 				)}/>
 		)
 	}

@@ -12,6 +12,10 @@ const Search = Input.Search
 class UserActionBar extends Component {
 	constructor(props) {
 		super(props)
+		// 增加密码自定义校验
+		Map.user.input[1].options.rules.push({validator: this.validateToNextPassword})
+		Map.user.input[2].options.rules.push({validator: this.compareToFirstPassword})
+		Map.user.input[2].props['onBlur'] = this.handleConfirmBlur
 		this.state = {
 			confirmDirty: false,
 			visible: false,
@@ -79,10 +83,6 @@ class UserActionBar extends Component {
 	}
 	
 	componentWillMount() {
-		// 增加密码自定义校验
-		Map.user.input[1].options.rules.push({validator: this.validateToNextPassword})
-		Map.user.input[2].options.rules.push({validator: this.compareToFirstPassword})
-		Map.user.input[2].props['onBlur'] = this.handleConfirmBlur
 	}
 	
 	async componentDidMount() {

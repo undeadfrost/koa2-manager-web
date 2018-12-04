@@ -5,18 +5,17 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import userReducer from './user/reducer'
 import menuReducer from './menu/reducer'
 import rolesReducer from './role/reducer'
-import routeReducer from './route/reducer'
 
 const persistConfig = {
 	key: 'root',
 	storage,
+	whitelist: ['userData']
 }
 
 const allReducer = {
 	userData: userReducer,
 	menusData: menuReducer,
 	rolesData: rolesReducer,
-	routeData: routeReducer
 }
 
 const persistedReducer = persistReducer(persistConfig, combineReducers(allReducer))

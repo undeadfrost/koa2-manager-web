@@ -9,6 +9,10 @@ import {fetchGetRole, fetchGetUserInfo, fetchPutUserInfo} from '../../api/index'
 class UserModal extends Component {
 	constructor(props) {
 		super(props)
+		// 增加密码自定义校验
+		ItemMap.input[1].options.rules.push({validator: this.validateToNextPassword})
+		ItemMap.input[2].options.rules.push({validator: this.compareToFirstPassword})
+		ItemMap.input[2].props['onBlur'] = this.handleConfirmBlur
 		this.state = {
 			roles: []
 		}
@@ -61,11 +65,6 @@ class UserModal extends Component {
 	}
 	
 	async componentDidMount() {
-		// 增加密码自定义校验
-		ItemMap.input[1].options.rules.push({validator: this.validateToNextPassword})
-		ItemMap.input[2].options.rules.push({validator: this.compareToFirstPassword})
-		ItemMap.input[2].props['onBlur'] = this.handleConfirmBlur
-		
 		let roleRes = await fetchGetRole()
 		this.setState({roles: roleRes})
 		let userInfoRes = await fetchGetUserInfo({userId: this.props.userId})

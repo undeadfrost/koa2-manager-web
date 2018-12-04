@@ -33,11 +33,9 @@ class Layout extends Component {
 			route: "/admin/welcome",
 			type: 1
 		}
-		if (this.props.menusData.navList.length === 0) {
-			const menusData = await fetchGetRoute()
-			menusData.navList.unshift(welcome)
-			this.props.updateMenu({...menusData})
-		}
+		const menusData = await fetchGetRoute()
+		menusData.navList.unshift(welcome)
+		this.props.updateMenu({...menusData})
 		this.setState({isLoading: false})
 	}
 	

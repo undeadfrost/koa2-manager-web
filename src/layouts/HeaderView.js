@@ -35,7 +35,6 @@ class HeaderView extends Component {
 	render() {
 		const {collapsed, toggle} = this.props
 		const {username} = this.props.userInfo
-		console.log(this.props.userInfo)
 		return (
 			<Header className={styles.header}>
 				<Icon

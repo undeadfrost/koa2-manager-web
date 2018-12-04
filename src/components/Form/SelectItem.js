@@ -13,7 +13,7 @@ class SelectItem extends Component {
 				{getFieldDecorator(id, options)(
 					<Select labelInValue {...customprops}>
 						{selectData.map(item => (
-							<Option key={item.id}>{item.data}</Option>
+							<Option key={item.id}>{item.roleName}</Option>
 						))}
 					</Select>
 				)}
