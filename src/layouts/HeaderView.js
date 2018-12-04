@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import {Icon, Layout, Dropdown, Menu, message} from "antd"
 import {persistor} from '../redux/index'
+import {restUser} from '../redux/user/actions'
 import styles from './index.module.less'
 
 const {Header} = Layout
@@ -10,6 +12,10 @@ const {Header} = Layout
 const mapStateToProps = state => ({
 	userInfo: state.userData.userInfo
 })
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+	restUser
+}, dispatch)
 
 class HeaderView extends Component {
 	state = {
@@ -28,6 +34,7 @@ class HeaderView extends Component {
 	// 注销登录，清空store
 	clearStore = async () => {
 		await persistor.purge()
+		this.props.restUser({})
 		message.success('注销成功，请重新登录')
 		this.props.history.push('/admin/login')
 	}
@@ -52,4 +59,4 @@ class HeaderView extends Component {
 	}
 }
 
-export default connect(mapStateToProps)(withRouter(HeaderView))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderView))
