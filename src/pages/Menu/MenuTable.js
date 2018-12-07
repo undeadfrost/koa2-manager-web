@@ -3,7 +3,7 @@ import {Table, Icon, Tag, Divider, Popconfirm} from 'antd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from "redux"
 import {updateMenu} from "../../redux/menu/actions"
-import {fetchDelMenu, fetchGetMenu, fetchGetMenuInfo} from "../../api/index"
+import {fetchDelMenu, fetchGetMenu} from "../../api/index"
 import {formatRoutes} from '../../common/utils'
 
 const icon = <Icon type="question-circle-o" style={{color: 'red'}}/>
@@ -44,7 +44,7 @@ class MenuTable extends Component {
 						this.menuRowConfiguration(record)
 					}}>配置</a>
 					<Divider type="vertical"/>
-					<Popconfirm title="是否删除该菜单?" cancelText={'取消'} okText={'确定'}
+					<Popconfirm placement="topRight" title="是否删除该菜单?" cancelText={'取消'} okText={'确定'}
 											icon={icon} onConfirm={this.delConfirm.bind(this, record.id)}>
 					<a href="#">删除</a>
 					</Popconfirm>

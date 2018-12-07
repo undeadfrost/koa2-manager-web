@@ -47,7 +47,7 @@ class RoleTable extends Component {
 						this.roleRowConfiguration(record)
 					}}>配置</a>
 					<Divider type="vertical"/>
-					<Popconfirm title="是否删除该角色?" cancelText={'取消'} okText={'确定'}
+					<Popconfirm placement="topRight" title="是否删除该角色?" cancelText={'取消'} okText={'确定'}
 											icon={icon} onConfirm={this.delConfirm.bind(this, record.id)}>
 						<a href="#">删除</a>
 					</Popconfirm>

@@ -15,7 +15,9 @@ class BaseNav extends Component {
 	}
 	
 	getKeys = () => {
-		const pathname = this.props.location.pathname
+		let pathname = this.props.history.location.pathname
+		// 修改进入/admin或/admin/跳转后导航无法高亮问题
+		if (pathname === '/admin/' || pathname === '/admin') pathname = '/admin/welcome'
 		const navsData = this.props.navsData
 		let defaultOpenKeys = []
 		let defaultSelectedKeys = []
@@ -80,9 +82,13 @@ class BaseNav extends Component {
 	
 	render() {
 		const navsData = this.props.navsData
+		let defaultOpenKeys = []
+		if (this.props.navFold) {
+			defaultOpenKeys = this.state.defaultOpenKeys
+		}
 		return (
 			<Menu theme="dark" mode="inline"
-						defaultOpenKeys={this.state.defaultOpenKeys}
+						defaultOpenKeys={defaultOpenKeys}
 						defaultSelectedKeys={this.state.defaultSelectedKeys}>
 				{this.getMenuItems(navsData)}
 			</Menu>

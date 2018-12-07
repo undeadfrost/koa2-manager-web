@@ -57,7 +57,7 @@ class Info extends Component {
                         userId={this.state.userId}
                         visible={this.state.userModalVisible}
                         title={this.state.userModalTitle}
-                        setVisible={this.setUserModalVisible} userId={this.state.userId}/>
+                        setVisible={this.setUserModalVisible}/>
                 }
             </Fragment>
         )

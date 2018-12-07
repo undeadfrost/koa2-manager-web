@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import moment from 'moment'
 import {updateUser} from '../../redux/user/actions'
-import {fetchDelRole, fetchDelUser} from "../../api";
+import {fetchDelUser} from "../../api";
 
 const rowSelection = {
 	onChange: (selectedRowKeys, selectedRows) => {
@@ -55,7 +55,7 @@ class UserTable extends Component {
 						props.setUserModalData(true, '配置用户', record.id)
 					}}>配置</a>
 					<Divider type="vertical"/>
-					<Popconfirm title="是否删除该用户?" cancelText={'取消'} okText={'确定'}
+					<Popconfirm placement="topRight" title="是否删除该用户?" cancelText={'取消'} okText={'确定'}
 											icon={icon} onConfirm={this.delConfirm.bind(this, record.id)}>
 					<a href="#">删除</a>
 					</Popconfirm>
