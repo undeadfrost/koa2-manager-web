@@ -17,12 +17,16 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 class Login extends Component {
+	state = {
+		btnLoading: false
+	}
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
-				console.log('Received values of form: ', values);
+				this.setState({btnLoading: true})
 				fetchLogin(values).then(data => {
+					this.setState({btnLoading: false})
 					if (data.code === 0) {
 						this.props.updateUser({accessToken: data.token, isLogin: true, userInfo: data.userInfo})
 						if (this.props.location.state) {
@@ -45,7 +49,8 @@ class Login extends Component {
 					<Form onSubmit={this.handleSubmit}>
 						<LoginItem form={this.props.form}/>
 						<FormItem>
-							<Button type="primary" htmlType="submit" size="large" className={styles.submit}>
+							<Button loading={this.state.btnLoading} type="primary" htmlType="submit" size="large"
+											className={styles.submit}>
 								Log in
 							</Button>
 						</FormItem>
