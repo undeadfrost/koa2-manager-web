@@ -22,9 +22,6 @@ class HeaderView extends Component {
 		menu: (
 			<Menu>
 				<Menu.Item>
-					<a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">个人中心</a>
-				</Menu.Item>
-				<Menu.Item>
 					<a href="javascript:void(0);" onClick={() => this.clearStore()}>退出登录</a>
 				</Menu.Item>
 			</Menu>
