@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Divider, Table, Popconfirm, Icon} from 'antd'
 import {fetchDelRole, fetchGetRole} from "../../api"
-import {updateRoles} from '../../redux/role/actions'
+import {updateRoles} from '../../redux/actions/role.actions'
 
 const rowSelection = {
 	onChange: (selectedRowKeys, selectedRows) => {

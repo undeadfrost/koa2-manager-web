@@ -1,4 +1,4 @@
-import {UPDATE_MENU} from './actions'
+import {UPDATE_MENU} from '../actions/menu.actions'
 
 const initState = {
 	navList: [],

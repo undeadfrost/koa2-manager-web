@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Icon, Layout, Dropdown, Menu, message} from "antd"
 import {persistor} from '../redux/index'
-import {restUser} from '../redux/user/actions'
+import {restUser} from '../redux/actions/user.actions'
 import styles from './index.module.less'
 
 const {Header} = Layout

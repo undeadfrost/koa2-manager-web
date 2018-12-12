@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {updateRoles} from '../../redux/role/actions'
+import {updateRoles} from '../../redux/actions/role.actions'
 import {fetchGetRole} from '../../api/index'
 import RoleActionBar from '../../components/ActionBar/RoleActionBar'
 import RoleTable from './RoleTable'

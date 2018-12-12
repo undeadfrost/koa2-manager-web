@@ -3,7 +3,7 @@ import {Form, Button, Row, Col, message} from 'antd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {fetchLogin} from '../../api/index'
-import {updateUser} from '../../redux/user/actions'
+import {updateUser} from '../../redux/actions/user.actions'
 import LoginItem from "../../components/Login/LoginItem";
 import styles from './index.module.less'
 

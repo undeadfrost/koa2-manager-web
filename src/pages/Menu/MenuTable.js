@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Table, Icon, Tag, Divider, Popconfirm} from 'antd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from "redux"
-import {updateMenu} from "../../redux/menu/actions"
+import {updateMenu} from "../../redux/actions/menu.actions"
 import {fetchDelMenu, fetchGetMenu} from "../../api/index"
 import {formatRoutes} from '../../common/utils'
 

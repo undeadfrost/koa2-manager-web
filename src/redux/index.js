@@ -1,10 +1,8 @@
-import {createStore, combineReducers} from 'redux'
+import {createStore} from 'redux'
 import {persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage/session'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import userReducer from './user/reducer'
-import menuReducer from './menu/reducer'
-import rolesReducer from './role/reducer'
+import reducers from './reducers/index'
 
 const persistConfig = {
 	key: 'root',
@@ -12,13 +10,7 @@ const persistConfig = {
 	whitelist: ['userData']
 }
 
-const allReducer = {
-	userData: userReducer,
-	menusData: menuReducer,
-	rolesData: rolesReducer,
-}
-
-const persistedReducer = persistReducer(persistConfig, combineReducers(allReducer))
+const persistedReducer = persistReducer(persistConfig, reducers)
 export const store = createStore(persistedReducer, composeWithDevTools())
 export const persistor = persistStore(store)
 

@@ -2,7 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 import config from '../config'
 import {store} from '../redux/index'
-import {updateUser} from '../redux/user/actions'
+import {updateUser} from '../redux/actions/user.actions'
 
 // 自定义Axios实例
 const instance = axios.create({

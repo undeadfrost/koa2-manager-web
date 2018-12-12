@@ -3,7 +3,7 @@ import {Divider, Popconfirm, Table, Icon, Badge, message} from 'antd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import moment from 'moment'
-import {updateUser} from '../../redux/user/actions'
+import {updateUser} from '../../redux/actions/user.actions'
 import {fetchDelUser} from "../../api";
 
 const rowSelection = {

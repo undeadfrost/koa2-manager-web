@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {fetchGetRoute} from '../api/index'
-import {updateMenu} from '../redux/menu/actions'
+import {updateMenu} from '../redux/actions/menu.actions'
 import PageLoading from '../components/Loading/PageLoading'
 import BasicLayout from '../layouts/BasicLayout'
 

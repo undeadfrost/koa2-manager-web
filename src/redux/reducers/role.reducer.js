@@ -1,4 +1,4 @@
-import {UPDATE_ROLES} from './actions'
+import {UPDATE_ROLES} from '../actions/role.actions'
 
 const initState = null
 

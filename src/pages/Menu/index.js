@@ -5,7 +5,7 @@ import MenuTable from './MenuTable'
 import MenuActionBar from '../../components/ActionBar/MenuActionBar'
 import MenuModal from './MenuModal'
 import {fetchGetMenu} from '../../api/index'
-import {updateMenu} from '../../redux/menu/actions'
+import {updateMenu} from '../../redux/actions/menu.actions'
 import {formatRoutes} from '../../common/utils'
 
 const mapStateToProps = state => ({menusList: state.menusData.menusList})

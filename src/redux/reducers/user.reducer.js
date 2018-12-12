@@ -1,4 +1,4 @@
-import {UPDATE_USER, REST_USER} from './actions'
+import {UPDATE_USER, REST_USER} from '../actions/user.actions'
 
 const initState = {
 	accessToken: '',
