@@ -5,7 +5,7 @@ import Welcome from '../pages/Welcome/index'
 import UserList from '../pages/User/UserList'
 import Role from '../pages/Role/index'
 import Menu from '../pages/Menu/index'
-import Personal from '../pages/User/Personal'
+import Personal from '../pages/User/Personal/index'
 
 
 class ContentRoute extends React.Component {
@@ -17,7 +17,7 @@ class ContentRoute extends React.Component {
 				<PermissionRoute path='/admin/user' component={UserList}/>
 				<PermissionRoute path='/admin/role' component={Role}/>
 				<PermissionRoute path='/admin/menu' component={Menu}/>
-				<Route path='/admin/personal' component={Personal}/>
+				<Route path='/admin/personal/:page?' component={Personal}/>
 			</Switch>
 		)
 	}

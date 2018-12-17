@@ -22,7 +22,7 @@ class BaseNav extends Component {
 		let defaultOpenKeys = []
 		let defaultSelectedKeys = []
 		for (let i = 0; i < navsData.length; i++) {
-			if (navsData[i].route === pathname) {
+			if (pathname.includes(navsData[i].route)) {
 				defaultSelectedKeys.push(navsData[i].id.toString())
 				break
 			}
