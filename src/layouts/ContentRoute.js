@@ -17,6 +17,7 @@ class ContentRoute extends React.Component {
 				<PermissionRoute path='/admin/user' component={UserList}/>
 				<PermissionRoute path='/admin/role' component={Role}/>
 				<PermissionRoute path='/admin/menu' component={Menu}/>
+				<Route path='/admin/personal' exact render={() => (<Redirect to='/admin/personal/basic'/>)}/>
 				<Route path='/admin/personal/:page?' component={Personal}/>
 			</Switch>
 		)

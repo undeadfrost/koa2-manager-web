@@ -71,3 +71,11 @@ export const fetchGetMenuInfo = (params) => {
 export const fetchPutMenuInfo = (params) => {
 	return http('put', '/admin/menu/info', params)
 }
+
+export const fetchPutMyBasic = (params) => {
+	return http('put', '/admin/my/basic', params)
+}
+
+export const fetchPutMySecurity = (params) => {
+	return http('put', '/admin/my/security', params)
+}

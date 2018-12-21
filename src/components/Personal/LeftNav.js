@@ -3,8 +3,19 @@ import {Link, withRouter} from 'react-router-dom'
 import {Menu} from 'antd'
 
 class LeftNav extends Component {
+	state = {
+		defaultSelectedKeys: [],
+		routes: ['basic', 'security']
+	}
+	
 	componentWillMount() {
-		console.log(this.props)
+		const pathname = this.props.location.pathname
+		this.state.routes.forEach(route => {
+			if (pathname.includes(route)) {
+				this.setState({defaultSelectedKeys: [route]})
+			}
+			
+		})
 	}
 	
 	selectKey = ({key}) => {
@@ -14,7 +25,7 @@ class LeftNav extends Component {
 	render() {
 		return (
 			<Menu
-				defaultSelectedKeys={['1']}
+				defaultSelectedKeys={this.state.defaultSelectedKeys}
 				mode="inline"
 				onClick={this.selectKey}>
 				<Menu.Item key="basic">

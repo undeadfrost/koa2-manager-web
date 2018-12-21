@@ -10,7 +10,7 @@ class Personal extends Component {
 	render() {
 		return (
 			<Layout className={styles.layout}>
-				<Sider><LeftNav/></Sider>
+				<Sider className={styles.sider}><LeftNav/></Sider>
 				<Layout>
 					<Content className={styles.content}>
 						<PersonalContent/>
