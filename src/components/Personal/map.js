@@ -8,14 +8,6 @@ map.basic = {
 			},
 			formItemParams: {
 				label: '用户名',
-				labelCol: {
-					xs: {span: 24},
-					sm: {span: 4},
-				},
-				wrapperCol: {
-					xs: {span: 24},
-					sm: {span: 18},
-				},
 			},
 			props: {
 				type: 'text',
@@ -26,18 +18,18 @@ map.basic = {
 		{
 			id: 'mobile',
 			options: {
-				rules: [],
+				rules: [
+					{
+						pattern: /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/,
+						message: 'Please enter the correct mobile phone number！'
+					},
+				],
+				getValueFromEvent: (event) => {
+					return event.target.value.replace(/\D/g, '')
+				},
 			},
 			formItemParams: {
 				label: '手机号',
-				labelCol: {
-					xs: {span: 24},
-					sm: {span: 4},
-				},
-				wrapperCol: {
-					xs: {span: 24},
-					sm: {span: 18},
-				},
 			},
 			props: {
 				type: 'tel',
@@ -61,14 +53,6 @@ map.security = {
 			},
 			formItemParams: {
 				label: '密码',
-				labelCol: {
-					xs: {span: 24},
-					sm: {span: 4},
-				},
-				wrapperCol: {
-					xs: {span: 24},
-					sm: {span: 18},
-				},
 			},
 			props: {
 				type: 'password',
@@ -87,14 +71,6 @@ map.security = {
 			},
 			formItemParams: {
 				label: '确认密码',
-				labelCol: {
-					xs: {span: 24},
-					sm: {span: 4},
-				},
-				wrapperCol: {
-					xs: {span: 24},
-					sm: {span: 18},
-				},
 			},
 			props: {
 				type: 'password',

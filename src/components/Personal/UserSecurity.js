@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import {Form, Button} from 'antd'
+import {Form, Button, Row, Col, message, Spin} from 'antd'
 import {fetchPutMySecurity} from '../../api/index'
 import ItemMap from './map'
 import InputItem from "../Form/InputItem";
+import styles from './index.module.less'
 
 const FormItem = Form.Item
 
@@ -15,6 +16,7 @@ class UserSecurity extends Component {
 		ItemMap.security.input[1].props['onBlur'] = this.handleConfirmBlur
 		this.state = {
 			confirmDirty: false,
+			spinning: false
 		}
 	}
 	
@@ -44,9 +46,15 @@ class UserSecurity extends Component {
 		e.preventDefault()
 		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
-				console.log(values)
+				this.setState({spinning: true})
 				const putMySecurityRes = await fetchPutMySecurity(values)
-				console.log(putMySecurityRes)
+				this.setState({spinning: false})
+				if (putMySecurityRes.code === 0) {
+					message.success('密码更新成功！')
+					this.props.form.resetFields()
+				} else {
+					message.error('密码更新失败！')
+				}
 			}
 		})
 	}
@@ -54,22 +62,30 @@ class UserSecurity extends Component {
 	render() {
 		const form = this.props.form
 		return (
-			<Form onSubmit={this.onSubmit}>
-				{
-					ItemMap.security.input.map(item => (
-						<InputItem
-							key={item.id}
-							id={item.id}
-							options={item.options}
-							formItemParams={item.formItemParams}
-							form={form}
-							{...item.props}/>
-					))
-				}
-				<FormItem>
-					<Button type="primary" htmlType="submit">更新密码</Button>
-				</FormItem>
-			</Form>
+			<Row className={styles.security}>
+				<Col xxl={6} xl={10}>
+					<Spin spinning={this.state.spinning}>
+						<h2>安全设置</h2>
+						<Form onSubmit={this.onSubmit}>
+							{
+								ItemMap.security.input.map(item => (
+									<InputItem
+										key={item.id}
+										id={item.id}
+										options={item.options}
+										formItemParams={item.formItemParams}
+										form={form}
+										{...item.props}/>
+								))
+							}
+							<FormItem>
+								<Button type="primary" htmlType="submit">更新密码</Button>
+							</FormItem>
+						</Form>
+					</Spin>
+				</Col>
+			</Row>
+		
 		)
 	}
 }
