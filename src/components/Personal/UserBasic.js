@@ -7,6 +7,7 @@ import {fetchPutMyBasic} from '../../api/index'
 import InputItem from "../Form/InputItem";
 import ItemMap from './map'
 import styles from './index.module.less'
+import {baseUrl, uploadApi} from '../../config/index'
 
 const FormItem = Form.Item
 
@@ -94,10 +95,10 @@ class UserBasic extends Component {
 				</Col>
 				<Col span={6} className={styles.head_portrait}>
 					<h3>头像</h3>
-					<img src={`http://localhost:8000${this.props.userInfo.portrait}`}/>
+					<img src={`${baseUrl}${this.props.userInfo.portrait}`}/>
 					<Upload
 						headers={headers}
-						action={'http://localhost:8000/admin/my/upload/head'}
+						action={uploadApi}
 						showUploadList={false}
 						onChange={this.onChange}>
 						<Button className={styles.upload}>

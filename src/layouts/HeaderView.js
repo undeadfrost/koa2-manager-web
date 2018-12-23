@@ -6,6 +6,7 @@ import {Icon, Layout, Dropdown, Menu, Avatar, message} from "antd"
 import {persistor} from '../redux/index'
 import {restUser} from '../redux/actions/user.actions'
 import styles from './index.module.less'
+import {baseUrl} from '../config/index'
 
 const {Header} = Layout
 
@@ -49,7 +50,7 @@ class HeaderView extends Component {
 				<div className={styles.header_right}>
 					<Dropdown overlay={this.state.menu} placement="bottomRight" className={styles.dropdown}>
 					<span>
-						<Avatar className={styles.avatar} size="large" src={`http://localhost:8000${portrait}`}/>
+						<Avatar className={styles.avatar} size="large" src={`${baseUrl}${portrait}`}/>
 						{username}
 					</span>
 					</Dropdown>
