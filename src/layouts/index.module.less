@@ -1,14 +1,17 @@
 .layout {
   min-height: 100vh;
   min-width: 1000px;
+
   .logo {
     height: 32px;
     background: rgba(255, 255, 255, .2);
     margin: 16px;
   }
+
   .header {
     background: #ffffff;
     padding: 0;
+
     .icon {
       font-size: 18px;
       line-height: 64px;
@@ -16,14 +19,33 @@
       cursor: pointer;
       transition: color .3s;
     }
+
     .icon:hover {
       color: #1890ff;
     }
-    .dropdown {
+
+    .header_right {
       float: right;
-      padding-right: 24px;
+      height: 100%;
+      overflow: hidden;
+
+      .dropdown {
+        float: right;
+        text-align: center;
+        margin-right: 20px;
+
+        span {
+          cursor: pointer;
+          display: inline-block;
+        }
+
+        .avatar {
+          margin: 0 10px;
+        }
+      }
     }
   }
+
   .content {
     margin: 24px 16px;
     padding: 24px;

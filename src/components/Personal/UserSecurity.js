@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import {Form, Button, Row, Col, message, Spin} from 'antd'
 import {fetchPutMySecurity} from '../../api/index'
-import ItemMap from './map'
+import Map from './map'
 import InputItem from "../Form/InputItem";
 import styles from './index.module.less'
 
 const FormItem = Form.Item
+
+let ItemMap = JSON.parse(JSON.stringify(Map))
 
 class UserSecurity extends Component {
 	constructor(props) {
@@ -16,7 +18,7 @@ class UserSecurity extends Component {
 		ItemMap.security.input[1].props['onBlur'] = this.handleConfirmBlur
 		this.state = {
 			confirmDirty: false,
-			spinning: false
+			spinning: false,
 		}
 	}
 	
@@ -59,8 +61,13 @@ class UserSecurity extends Component {
 		})
 	}
 	
+	componentWillUnmount() {
+		ItemMap = JSON.parse(JSON.stringify(Map))
+	}
+	
 	render() {
 		const form = this.props.form
+		console.log(ItemMap.security.input)
 		return (
 			<Row className={styles.security}>
 				<Col xxl={6} xl={10}>

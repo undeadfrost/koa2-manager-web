@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {Icon, Layout, Dropdown, Menu, message} from "antd"
+import {Icon, Layout, Dropdown, Menu, Avatar, message} from "antd"
 import {persistor} from '../redux/index'
 import {restUser} from '../redux/actions/user.actions'
 import styles from './index.module.less'
@@ -38,7 +38,7 @@ class HeaderView extends Component {
 	
 	render() {
 		const {collapsed, toggle} = this.props
-		const {username} = this.props.userInfo
+		const {username, portrait} = this.props.userInfo
 		return (
 			<Header className={styles.header}>
 				<Icon
@@ -46,11 +46,14 @@ class HeaderView extends Component {
 					type={collapsed ? 'menu-unfold' : 'menu-fold'}
 					onClick={toggle}
 				/>
-				<Dropdown overlay={this.state.menu} placement="bottomRight" className={styles.dropdown}>
+				<div className={styles.header_right}>
+					<Dropdown overlay={this.state.menu} placement="bottomRight" className={styles.dropdown}>
 					<span>
-						{username}<Icon type="down"/>
+						<Avatar className={styles.avatar} size="large" src={`http://localhost:8000${portrait}`}/>
+						{username}
 					</span>
-				</Dropdown>
+					</Dropdown>
+				</div>
 			</Header>
 		)
 	}
