@@ -3,6 +3,7 @@ import {Route} from 'react-router'
 import {Redirect} from 'react-router-dom'
 import {message} from 'antd'
 import PageLoading from '../Loading/PageLoading'
+import _403 from '../../pages/Error/_403'
 import {fetchRouteAuth} from '../../api/index'
 
 /**
@@ -47,7 +48,7 @@ class PermissionRoute extends Component {
 				: <Route {...rest} render={props => (
 					isAuthenticated
 						? <Component {...props}/>
-						: <Redirect to={{pathname: '/admin/welcome', state: {from: props.location}}}/>
+						: <_403/>
 				)}/>
 		)
 	}

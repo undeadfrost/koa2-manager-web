@@ -7,8 +7,8 @@ class PersonalContent extends Component {
 	render() {
 		return (
 			<Switch>
-				<Route path='/admin/personal/basic' component={UserBasic}/>
-				<Route path='/admin/personal/security' component={UserSecurity}/>
+				<Route path='/admin/personal/basic' exact component={UserBasic}/>
+				<Route path='/admin/personal/security' exact component={UserSecurity}/>
 			</Switch>
 		)
 	}
