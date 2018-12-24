@@ -67,7 +67,6 @@ class UserSecurity extends Component {
 	
 	render() {
 		const form = this.props.form
-		console.log(ItemMap.security.input)
 		return (
 			<Row className={styles.security}>
 				<Col xxl={6} xl={10}>

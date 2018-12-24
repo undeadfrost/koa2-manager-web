@@ -9,8 +9,21 @@ class BaseNav extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			defaultOpenKeys: [],
-			defaultSelectedKeys: []
+			openKeys: [],
+			selectedKeys: []
+		}
+	}
+	
+	onClick = ({item, key, keyPath}) => {
+		this.setState({selectedKeys: [key]})
+	}
+	
+	// 菜单只能展开一项
+	onOpenChange = (openKeys) => {
+		if (openKeys.length <= 1) {
+			this.setState({openKeys: openKeys});
+		} else {
+			this.setState({openKeys: [openKeys[openKeys.length - 1]]})
 		}
 	}
 	
@@ -19,25 +32,25 @@ class BaseNav extends Component {
 		// 修改进入/admin或/admin/跳转后导航无法高亮问题
 		if (pathname === '/admin/' || pathname === '/admin') pathname = '/admin/welcome'
 		const navsData = this.props.navsData
-		let defaultOpenKeys = []
-		let defaultSelectedKeys = []
+		let openKeys = []
+		let selectedKeys = []
 		for (let i = 0; i < navsData.length; i++) {
 			if (pathname.includes(navsData[i].route)) {
-				defaultSelectedKeys.push(navsData[i].id.toString())
+				selectedKeys.push(navsData[i].id.toString())
 				break
 			}
 			const submenus = navsData[i].submenus
 			if (submenus) {
 				for (let j = 0; j < submenus.length; j++) {
 					if (submenus[j].route === pathname) {
-						defaultOpenKeys.push(navsData[i].id.toString())
-						defaultSelectedKeys.push(submenus[j].id.toString())
+						openKeys.push(navsData[i].id.toString())
+						selectedKeys.push(submenus[j].id.toString())
 						break
 					}
 				}
 			}
 		}
-		this.setState({defaultOpenKeys: defaultOpenKeys, defaultSelectedKeys: defaultSelectedKeys})
+		this.setState({openKeys: openKeys, selectedKeys: selectedKeys})
 	}
 	
 	componentWillMount() {
@@ -82,14 +95,17 @@ class BaseNav extends Component {
 	
 	render() {
 		const navsData = this.props.navsData
-		let defaultOpenKeys = []
+		let openKeys = []
 		if (this.props.navFold) {
-			defaultOpenKeys = this.state.defaultOpenKeys
+			openKeys = this.state.openKeys
 		}
+		console.log(this.props.navFold)
 		return (
 			<Menu theme="dark" mode="inline"
-						defaultOpenKeys={defaultOpenKeys}
-						defaultSelectedKeys={this.state.defaultSelectedKeys}>
+						openKeys={openKeys}
+						selectedKeys={this.state.selectedKeys}
+						onClick={this.onClick}
+						onOpenChange={this.onOpenChange}>
 				{this.getMenuItems(navsData)}
 			</Menu>
 		)
