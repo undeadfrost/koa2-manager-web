@@ -95,7 +95,7 @@ class UserBasic extends Component {
 				</Col>
 				<Col span={6} className={styles.head_portrait}>
 					<h3>头像</h3>
-					<img src={`${baseUrl}${this.props.userInfo.portrait}`}/>
+					<img src={`${baseUrl}${this.props.userInfo.portrait}`} alt={"头像"}/>
 					<Upload
 						headers={headers}
 						action={uploadApi}
