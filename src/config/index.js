@@ -1,4 +1,13 @@
-export const baseUrl = 'http://localhost:8000'
-// export const baseUrl = 'http://koa2manager.service.undeadfrost.cn'
+import dev from './dev';
+import prod from './prod';
 
-export const uploadApi = `${baseUrl}/admin/my/upload/head`
+const NODE_ENV = process.env.NODE_ENV || 'development';
+let config = {};
+
+if (NODE_ENV === 'development') {
+	config = prod;
+} else if (NODE_ENV === 'production') {
+	config = prod;
+}
+
+export default config

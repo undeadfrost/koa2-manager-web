@@ -33,7 +33,6 @@ class BasicLayout extends Component {
 				collapsed: false
 			})
 		}
-		console.log('浏览器窗口大小改变事件', e.target.innerWidth)
 	}
 	
 	componentWillMount() {

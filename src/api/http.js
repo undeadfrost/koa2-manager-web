@@ -1,13 +1,13 @@
 import axios from 'axios'
 import qs from 'qs'
-import {baseUrl} from '../config'
+import config from '../config/index'
 import {store} from '../redux/index'
 import {updateUser} from '../redux/actions/user.actions'
 
 // 自定义Axios实例
 const instance = axios.create({
 	// 配置api地址
-	baseURL: baseUrl,
+	baseURL: config.baseUrl,
 	// 请求超时时间
 	timeout: 10000,
 	// 设置请求头

@@ -20,6 +20,7 @@ class BaseNav extends Component {
 	
 	// 菜单只能展开一项
 	onOpenChange = (openKeys) => {
+		console.log(openKeys)
 		if (openKeys.length <= 1) {
 			this.setState({openKeys: openKeys});
 		} else {
@@ -50,11 +51,17 @@ class BaseNav extends Component {
 				}
 			}
 		}
-		this.setState({openKeys: openKeys, selectedKeys: selectedKeys})
+		if (this.props.navFold) {
+			this.setState({openKeys: openKeys, selectedKeys: selectedKeys})
+		}
+		this.setState({openKeys: [], selectedKeys: selectedKeys})
 	}
 	
 	componentWillMount() {
 		this.getKeys()
+	}
+	
+	componentDidMount() {
 	}
 	
 	getMenuItems = (menusData) => {
@@ -95,14 +102,9 @@ class BaseNav extends Component {
 	
 	render() {
 		const navsData = this.props.navsData
-		let openKeys = []
-		if (this.props.navFold) {
-			openKeys = this.state.openKeys
-		}
-		console.log(this.props.navFold)
 		return (
 			<Menu theme="dark" mode="inline"
-						openKeys={openKeys}
+						openKeys={this.state.openKeys}
 						selectedKeys={this.state.selectedKeys}
 						onClick={this.onClick}
 						onOpenChange={this.onOpenChange}>
