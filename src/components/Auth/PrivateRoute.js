@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({})
  * 登录状态核验组件
  */
 class PrivateRoute extends Component {
-	componentDidMount() {
+	componentWillMount() {
 		const {isLogin} = this.props
 		if (!isLogin) {
 			console.log('error auth')
