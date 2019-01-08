@@ -42,7 +42,6 @@ class Info extends Component {
     }
 
     setUserModalVisible = (visible) => {
-        console.log(visible)
         this.setState({userModalVisible: visible})
     }
 

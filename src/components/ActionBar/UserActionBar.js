@@ -57,7 +57,6 @@ class UserActionBar extends Component {
 	handleOk = async () => {
 		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
-				console.log(values)
 				this.setState({confirmLoading: true})
 				if (values.roles) {
 					values.roleIds = values.roles.map(item => item.key)

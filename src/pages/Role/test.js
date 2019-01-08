@@ -73,7 +73,6 @@ class Test extends Component {
 			resourceIds: this.state.treeCheckedKeys
 		}
 		fetchSaveRoleResources(params).then(res => {
-			// console.log(res)
 			this.setState({
 				visible: false,
 			});
@@ -81,7 +80,6 @@ class Test extends Component {
 	}
 	
 	handleCancel = (e) => {
-		// console.log(e);
 		this.setState({
 			visible: false,
 		});
@@ -111,7 +109,6 @@ class Test extends Component {
 	
 	render() {
 		const isLoading = this.state.isLoading
-		console.log(this.state.defaultCheckedKeys)
 		return (
 			<Fragment>
 				<ActionBar getRoleList={this.getRoleList}/>

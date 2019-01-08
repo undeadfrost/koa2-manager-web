@@ -31,7 +31,6 @@ class PermissionRoute extends Component {
 		const pathname = this.props.location.pathname
 		let authRes = await fetchRouteAuth({route: pathname})
 		if (!authRes['isAuth']) {
-			console.log(authRes.msg)
 			message.error(authRes.msg, 5)
 		}
 		// 更新视图

@@ -44,7 +44,6 @@ class UserBasic extends Component {
 	
 	onChange = (info) => {
 		if (info['file'].status !== 'uploading') {
-			console.log(info['file']);
 		}
 		if (info['file'].status === 'done') {
 			const response = info.file.response
