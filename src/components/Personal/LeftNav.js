@@ -8,7 +8,7 @@ class LeftNav extends Component {
 		routes: ['basic', 'security']
 	}
 	
-	componentWillMount() {
+	componentDidMount() {
 		const pathname = this.props.location.pathname
 		this.state.routes.forEach(route => {
 			if (pathname.includes(route)) {

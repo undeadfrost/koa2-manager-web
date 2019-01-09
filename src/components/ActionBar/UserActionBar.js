@@ -81,9 +81,6 @@ class UserActionBar extends Component {
 		this.props.form.resetFields()
 	}
 	
-	componentWillMount() {
-	}
-	
 	async componentDidMount() {
 		let roleRes = await fetchGetRole()
 		roleRes = roleRes.filter(item => (item.data = item.roleName))

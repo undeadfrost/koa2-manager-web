@@ -35,16 +35,13 @@ class BasicLayout extends Component {
 		}
 	}
 	
-	componentWillMount() {
+	componentDidMount() {
 		if (document.body.clientWidth <= 1000) {
 			this.setState({
 				collapsed: true,
 				navFold: false
 			})
 		}
-	}
-	
-	componentDidMount() {
 		window.addEventListener('resize', this.handleResize.bind(this))
 	}
 	

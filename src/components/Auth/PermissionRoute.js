@@ -21,8 +21,8 @@ class PermissionRoute extends Component {
 		await this.checkAuth()
 	}
 	
-	componentWillReceiveProps = async (nextProps) => {
-		if (nextProps.location.pathname !== this.props.location.pathname) {
+	componentDidUpdate = async (prevProps) => {
+		if (prevProps.location.pathname !== this.props.location.pathname) {
 			await this.checkAuth()
 		}
 	}
@@ -34,7 +34,9 @@ class PermissionRoute extends Component {
 			message.error(authRes.msg, 5)
 		}
 		// 更新视图
-		this.setState({isAuthenticated: authRes['isAuth'], isLoading: false})
+		if (this.state.isAuthenticated !== authRes['isAuth'] || this.state !== false) {
+			this.setState({isAuthenticated: authRes['isAuth'], isLoading: false})
+		}
 	}
 	
 	render() {

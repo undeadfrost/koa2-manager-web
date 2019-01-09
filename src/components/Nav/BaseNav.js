@@ -56,11 +56,8 @@ class BaseNav extends Component {
 		this.setState({openKeys: [], selectedKeys: selectedKeys})
 	}
 	
-	componentWillMount() {
-		this.getKeys()
-	}
-	
 	componentDidMount() {
+		this.getKeys()
 	}
 	
 	getMenuItems = (menusData) => {
