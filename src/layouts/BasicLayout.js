@@ -10,9 +10,10 @@ const {Sider, Content} = Layout
 class BasicLayout extends Component {
 	constructor(props) {
 		super(props)
+		const clientWidth = document.body.clientWidth
 		this.state = {
-			collapsed: false,
-			navFold: true
+			collapsed: clientWidth < 1000 ? true : false,
+			navFold: clientWidth <= 1000 ? false : true
 		}
 	}
 	
@@ -24,31 +25,23 @@ class BasicLayout extends Component {
 	
 	handleResize = (e) => {
 		if (e.target.innerWidth <= 1000 && this.state.collapsed === false) {
-			this.setState({
-				collapsed: true
-			})
+			this.setState({collapsed: true, navFold: false})
 		}
 		if (e.target.innerWidth > 1000 && this.state.collapsed === true) {
-			this.setState({
-				collapsed: false
-			})
+			this.setState({collapsed: false, navFold: true})
 		}
 	}
 	
 	componentDidMount() {
-		if (document.body.clientWidth <= 1000) {
-			this.setState({
-				collapsed: true,
-				navFold: false
-			})
-		}
 		window.addEventListener('resize', this.handleResize.bind(this))
 	}
 	
 	render() {
+		console.log(this.state.navFold)
 		return (
 			<Layout className={styles.layout}>
 				<Sider
+					className={styles.sider}
 					trigger={null}
 					collapsible
 					collapsed={this.state.collapsed}
@@ -56,7 +49,7 @@ class BasicLayout extends Component {
 					<div className={styles.logo}/>
 					<BaseMenu navsData={this.props.navsData} navFold={this.state.navFold}/>
 				</Sider>
-				<Layout>
+				<Layout className={styles.right}>
 					<HeaderView collapsed={this.state.collapsed} toggle={this.toggle}/>
 					<Content className={styles.content}>
 						<ContentRoute/>

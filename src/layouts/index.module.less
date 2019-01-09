@@ -1,55 +1,59 @@
 .layout {
-  min-height: 100vh;
+  //min-height: 100vh;
   min-width: 1000px;
 
-  .logo {
-    height: 32px;
-    background: rgba(255, 255, 255, .2);
-    margin: 16px;
+  .sider {
+    min-height: 100vh;
+    .logo {
+      height: 32px;
+      background: rgba(255, 255, 255, .2);
+      margin: 16px;
+    }
+  }
+  .right {
+    .content {
+      margin: 24px 16px;
+      padding: 24px;
+      background: #ffffff;
+      min-height: 280px;
+    }
+  }
+}
+
+.header {
+  background: #ffffff;
+  padding: 0;
+
+  .icon {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
   }
 
-  .header {
-    background: #ffffff;
-    padding: 0;
+  .icon:hover {
+    color: #1890ff;
+  }
 
-    .icon {
-      font-size: 18px;
-      line-height: 64px;
-      padding: 0 24px;
-      cursor: pointer;
-      transition: color .3s;
-    }
+  .header_right {
+    float: right;
+    height: 100%;
+    overflow: hidden;
 
-    .icon:hover {
-      color: #1890ff;
-    }
-
-    .header_right {
+    .dropdown {
       float: right;
-      height: 100%;
-      overflow: hidden;
+      text-align: center;
+      margin-right: 20px;
 
-      .dropdown {
-        float: right;
-        text-align: center;
-        margin-right: 20px;
+      span {
+        cursor: pointer;
+        display: inline-block;
+      }
 
-        span {
-          cursor: pointer;
-          display: inline-block;
-        }
-
-        .avatar {
-          margin: 0 10px;
-        }
+      .avatar {
+        margin: 0 10px;
       }
     }
-  }
-
-  .content {
-    margin: 24px 16px;
-    padding: 24px;
-    background: #ffffff;
-    min-height: 280px;
   }
 }

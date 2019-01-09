@@ -10,8 +10,12 @@ class BaseNav extends Component {
 		super(props)
 		this.state = {
 			openKeys: [],
-			selectedKeys: []
+			selectedKeys: [],
 		}
+	}
+	
+	componentDidMount() {
+		this.getKeys()
 	}
 	
 	onClick = ({item, key, keyPath}) => {
@@ -50,14 +54,7 @@ class BaseNav extends Component {
 				}
 			}
 		}
-		if (this.props.navFold) {
-			this.setState({openKeys: openKeys, selectedKeys: selectedKeys})
-		}
-		this.setState({openKeys: [], selectedKeys: selectedKeys})
-	}
-	
-	componentDidMount() {
-		this.getKeys()
+		this.setState({openKeys: openKeys, selectedKeys: selectedKeys})
 	}
 	
 	getMenuItems = (menusData) => {
@@ -98,12 +95,16 @@ class BaseNav extends Component {
 	
 	render() {
 		const navsData = this.props.navsData
+		const navFold = this.props.navFold
+		console.log(navFold)
 		return (
-			<Menu theme="dark" mode="inline"
-						openKeys={this.state.openKeys}
-						selectedKeys={this.state.selectedKeys}
-						onClick={this.onClick}
-						onOpenChange={this.onOpenChange}>
+			<Menu
+				theme="dark"
+				mode="inline"
+				openKeys={this.state.openKeys}
+				selectedKeys={this.state.selectedKeys}
+				onClick={this.onClick}
+				onOpenChange={this.onOpenChange}>
 				{this.getMenuItems(navsData)}
 			</Menu>
 		)

@@ -1,4 +1,11 @@
-import "babel-polyfill"
+import 'core-js/es6/promise';
+import 'core-js/es6/map';
+import 'core-js/es6/set';
+import 'core-js/fn/object/assign';
+import 'core-js/fn/string/includes';
+import 'core-js/fn/array/filter';
+import 'core-js/fn/array/find-index';
+import 'raf/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './pages/index';

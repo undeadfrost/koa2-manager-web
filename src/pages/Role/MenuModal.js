@@ -63,25 +63,6 @@ class MenuModal extends Component {
 		}
 	}
 	
-	// async componentWillReceiveProps(nextProps) {
-	// 	const roleId = nextProps['roleId']
-	// 	// console.log(nextProps.visible)
-	// 	// if (nextProps.visible) {
-	// 	// 	this.setState({isLoading: true})
-	// 	// 	const roleInfoRes = await fetchGetRoleInfo({roleId: roleId})
-	// 	// 	let sysMenuAll = roleInfoRes['userMenuAll']
-	// 	// 	let nodeList = sysMenuAll.filter(item => item.parent === 0)
-	// 	// 	for (let i = 0; i < nodeList.length; i++) {
-	// 	// 		nodeList[i].children = sysMenuAll.filter(item => (item.parent === nodeList[i].id))
-	// 	// 	}
-	// 	// 	this.setState({
-	// 	// 		isLoading: false,
-	// 	// 		defaultCheckedKeys: roleInfoRes['roleMenu'],
-	// 	// 		nodeList: nodeList
-	// 	// 	})
-	// 	// }
-	// }
-	
 	render() {
 		const isLoading = this.state.isLoading
 		const title = this.props.title
