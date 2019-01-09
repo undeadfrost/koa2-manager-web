@@ -20,7 +20,6 @@ class BaseNav extends Component {
 	
 	// 菜单只能展开一项
 	onOpenChange = (openKeys) => {
-		console.log(openKeys)
 		if (openKeys.length <= 1) {
 			this.setState({openKeys: openKeys});
 		} else {

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Route} from 'react-router'
-import {Redirect} from 'react-router-dom'
 import {message} from 'antd'
 import PageLoading from '../Loading/PageLoading'
 import _403 from '../../pages/Error/_403'
@@ -32,7 +31,6 @@ class PermissionRoute extends Component {
 		const pathname = this.props.location.pathname
 		let authRes = await fetchRouteAuth({route: pathname})
 		if (!authRes['isAuth']) {
-			console.log(authRes.msg)
 			message.error(authRes.msg, 5)
 		}
 		// 更新视图

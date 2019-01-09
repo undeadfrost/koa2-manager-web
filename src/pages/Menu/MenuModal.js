@@ -20,7 +20,6 @@ class MenuModal extends Component {
 				values.type = this.state.type
 				values.menuId = this.props.menuId
 				const putMenuInfoRes = await fetchPutMenuInfo(values)
-				console.log(putMenuInfoRes)
 				this.props.setVisible(false)
 				this.props.form.resetFields()
 				this.props.getMenus()

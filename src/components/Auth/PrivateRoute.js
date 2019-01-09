@@ -17,7 +17,6 @@ class PrivateRoute extends Component {
 	componentWillMount() {
 		const {isLogin} = this.props
 		if (!isLogin) {
-			console.log('error auth')
 			message.error('無權使用，請先登入系統！', 5)
 		}
 	}
