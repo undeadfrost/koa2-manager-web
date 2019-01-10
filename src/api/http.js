@@ -66,6 +66,8 @@ instance.interceptors.response.use(
 
 const http = (method, url, params, config = {'Content-Type': 'application/x-www-form-urlencoded'}) => {
 	if (method === 'get' || method === 'delete') {
+		// 解决IE缓存Get请求问题，增加时间戳
+		params ? params.t = new Date().getTime() : params = {t: new Date().getTime()}
 		params = {params: params}
 	}
 	return new Promise((resolve, reject) => {
