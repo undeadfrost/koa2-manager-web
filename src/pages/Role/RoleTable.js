@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {Divider, Table, Popconfirm, Icon} from 'antd'
+import {Divider, Table, Popconfirm, Icon, message} from 'antd'
 import {fetchDelRole, fetchGetRole} from "../../api"
 import {updateRoles} from '../../redux/actions/role.actions'
 
@@ -57,7 +57,10 @@ class RoleTable extends Component {
 	}
 	
 	delConfirm = async (roleId) => {
-		await fetchDelRole({roleIds: roleId})
+		const delRolesRes = await fetchDelRole({roleIds: roleId})
+		if (delRolesRes.code !== 0) {
+			message.error(delRolesRes['msg'])
+		}
 		let rolesRes = await this.getRoleList()
 		this.props.updateRoles(rolesRes)
 	}

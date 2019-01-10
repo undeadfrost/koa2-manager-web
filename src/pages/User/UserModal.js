@@ -66,6 +66,7 @@ class UserModal extends Component {
 	
 	async componentDidMount() {
 		let roleRes = await fetchGetRole()
+		roleRes = roleRes.filter(item => (item.data = item.roleName))
 		this.setState({roles: roleRes})
 		let userInfoRes = await fetchGetUserInfo({userId: this.props.userId})
 		const userInfo = userInfoRes['userInfo']
