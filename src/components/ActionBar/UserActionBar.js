@@ -106,7 +106,8 @@ class UserActionBar extends Component {
 					title={this.props.title}
 					visible={this.state.visible}
 					onOk={this.handleOk}
-					onCancel={this.handleCancel}>
+					onCancel={this.handleCancel}
+					confirmLoading={this.state.confirmLoading}>
 					<Form onSubmit={this.handleOk}>
 						{
 							ItemMap.input.map(item => (
