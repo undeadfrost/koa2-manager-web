@@ -58,6 +58,8 @@ instance.interceptors.response.use(
 				console.log('error')
 			} else if (error.response.status === 401) {
 				console.log('error')
+				sessionStorage.clear()
+				window.location.href = '/admin/login'
 			}
 		}
 		return Promise.reject(error)
