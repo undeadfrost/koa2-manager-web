@@ -24,6 +24,10 @@ instance.interceptors.request.use(
 	config => {
 		// 在此添加发起请求前的信息
 		config.headers.Authorization = 'Bearer ' + store.getState().userData.accessToken
+		// 如果修改请求头，则不格式化请求数据
+		if (config.headers['Content-Type'] !== 'application/x-www-form-urlencoded') {
+			config.transformRequest = data => data
+		}
 		return config
 	},
 	error => {
