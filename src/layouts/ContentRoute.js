@@ -8,6 +8,11 @@ import Menu from '../pages/Menu/index'
 import Personal from '../pages/User/Personal/index'
 import _404 from '../pages/Error/_404'
 
+/**
+ * 路由导航
+ * <PermissionRoute>组件中子路由需要权限校验，需要添加节点路由nodeRoute，节点路为菜单路由名
+ */
+
 class ContentRoute extends React.Component {
 	render() {
 		return (
