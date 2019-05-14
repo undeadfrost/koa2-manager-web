@@ -1,4 +1,4 @@
-const baseUrl = 'http://koa2manager.service.undeadfrost.cn'
+const baseUrl = '//koa2manager.service.undeadfrost.cn'
 
 export default {
 	baseUrl: baseUrl,
