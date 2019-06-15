@@ -92,7 +92,6 @@ class UserActionBar extends Component {
 	render() {
 		const form = this.props.form
 		const selectItem = ItemMap.select
-		console.log(this.state.roles)
 		return (
 			<div className={styles.action_bar}>
 				<Search
