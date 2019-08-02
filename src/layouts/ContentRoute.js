@@ -6,7 +6,6 @@ import UserList from '../pages/User/UserList'
 import Role from '../pages/Role/index'
 import Menu from '../pages/Menu/index'
 import Personal from '../pages/User/Personal/index'
-import _404 from '../pages/Error/_404'
 
 /**
  * 路由导航
@@ -24,7 +23,6 @@ class ContentRoute extends React.Component {
 				<PermissionRoute path='/admin/menu' component={Menu}/>
 				<Route path='/admin/personal' exact render={() => (<Redirect to='/admin/personal/basic'/>)}/>
 				<Route path='/admin/personal/:page' component={Personal}/>
-				<Route path='*' component={_404}/>
 			</Switch>
 		)
 	}
